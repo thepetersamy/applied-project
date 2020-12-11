@@ -1,0 +1,4 @@
+add winning vertically
+add winning horizontally
+add winng diagonally
+(noTimeTocompleteChess() ? addGraphics() : 3adyMshMohem)
