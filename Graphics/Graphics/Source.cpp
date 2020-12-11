@@ -23,8 +23,7 @@ int main()
 	{
 		g.beginDraw();
 		g.setDrawingColor(COLORS::WHITE);
-		g.drawSolidRectangle(0, 0, width, height);//background
-		
+		g.fillScreen(COLORS::WHITE);
 		g.setDrawingColor(COLORS::BLACK);
 		g.setDrawingThickness(15);
 		g.drawSolidRectangle(xBoard, yBoard, 800, 800); //boarder

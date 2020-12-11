@@ -1,4 +1,4 @@
 ﻿  Source.cpp
-D:\Chess\Graphics\Graphics\CC212SGL.h(28,2): warning C4091: '__declspec(dllimport)': ignored on left of 'COLORS' when no variable is declared
-D:\Chess\Graphics\Graphics\Source.cpp(48,2): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
-  Graphics.vcxproj -> D:\Chess\Graphics\Debug\Graphics.exe
+C:\Users\Peter\Desktop\chess\repo\chess-game\Graphics\Graphics\CC212SGL.h(28,2): warning C4091: '__declspec(dllimport)': ignored on left of 'COLORS' when no variable is declared
+C:\Users\Peter\Desktop\chess\repo\chess-game\Graphics\Graphics\Source.cpp(48,2): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+  Graphics.vcxproj -> C:\Users\Peter\Desktop\chess\repo\chess-game\Graphics\Debug\Graphics.exe
