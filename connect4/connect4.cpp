@@ -1,9 +1,10 @@
 #include<stdio.h>
+#include<stack>
 
 #define ROWS 6
 #define COLS 7
 
-
+// creating a 2D array of ints to represent the gameboard
 void createGameBoard(int gameBoard[ROWS][COLS]){
 
     for (int i = 0; i < ROWS; i++) {
@@ -13,6 +14,7 @@ void createGameBoard(int gameBoard[ROWS][COLS]){
     }
 }
 
+// printing the gameboard
 void printGameBoard(int gameBoard[ROWS][COLS]) {
 
     for (int i = 0; i < ROWS; i++) {
@@ -43,7 +45,7 @@ int getFirstFreeRow(int gameBoard[ROWS][COLS], int column) {
     return -1;
 }
 
-
+// function to switch player
 int switchPlayer(int player) {
     if (player == 1)
         return 2;
@@ -51,6 +53,7 @@ int switchPlayer(int player) {
         return 1;
 }
 
+// checking if the board is full, hence a tie
 bool boardNotFull(int gameBoard[ROWS][COLS]) {
 
     for (int i = 0; i < ROWS; i++) {
@@ -66,21 +69,24 @@ int main(){
 
     int gameNotOver = 1;
 
-        //for iterating between players
+    //for iterating between players
     int playersTurn = 2;
-    int changing_player = -1;
-
-   
 
     int gameBoard[ROWS][COLS];
-	
+    
     createGameBoard(gameBoard);
     //printGameBoard(gameBoard);
 
     while (gameNotOver) {
+
+        // switching player every turn
         playersTurn = switchPlayer(playersTurn);
+
         bool played = 0;
+        
         int column;
+
+        // user input for column
         printf("enter the column you wish to choose (0-6):");
         scanf("%d", &column);
         printf("\n\n");
@@ -112,5 +118,5 @@ int main(){
     
 
 
-	return 0;
+    return 0;
 }
