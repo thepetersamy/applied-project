@@ -1,2 +1,0 @@
-think about how to implement movement and capturing
-research structs and struct pointers and typedef
