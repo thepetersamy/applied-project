@@ -1,5 +1,5 @@
 #include<stdio.h>
-
+//#include<sqlite3.h>
 #define ROWS 6
 #define COLS 7
 
@@ -72,9 +72,9 @@ bool playerWonHorizontally(int gameBoard[ROWS][COLS], int playersturn) {
 
     for (int row = ROWS - 1; row >= 0; row--) {
 
-        // opt: checking if the third column has a token 
+        // opt: checking if the third column has a token same as players turn
         // because if not no 4 tokens can be placed in a row
-        if (gameBoard[row][3] != 0) {
+        if (gameBoard[row][3] == playersturn) { 
             for (int column = COLS - 1; column >= 0; column--) {
                 if (gameBoard[row][column] == playersturn) {
                     counter++;
@@ -98,9 +98,9 @@ bool playerWonVertically(int gameBoard[ROWS][COLS], int playersturn) {
     // opt starting from downwards of the board to save processing power
     for (int column = COLS - 1; column >= 0; column--) {
 
-        // opt: step to only check if the second column has a token
+        // opt: checking if the third column has a token same as players turn
         // because if it doesn't then the player can't place
-        if (gameBoard[2][column] != 0) {
+        if (gameBoard[2][column] == playersturn) {
             for (int row = ROWS - 1; row >= 0; row--) {
                 if (gameBoard[row][column] == playersturn) {
                     counter++;
@@ -116,6 +116,8 @@ bool playerWonVertically(int gameBoard[ROWS][COLS], int playersturn) {
     }
     return 0;
 }
+
+//void saveGame(){}
 
 
 int main() {
