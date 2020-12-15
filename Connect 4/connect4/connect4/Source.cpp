@@ -114,7 +114,38 @@ bool playerWonVertically(int gameBoard[ROWS][COLS], int playersturn) {
     }
     return 0;
 }
+bool playerWonDiagonally(int gameBoard[ROWS][COLS], int playersTurn) {
+    // counter to check if 4 tokens of the same player in a column
+    int counter = 0, rowstart;
+    for (int row = 0; row < ROWS - 4; row++) {
+        int  col;
+        for (row = 0, col = 0; row < ROWS && col < COLS; row++, col++) {
+            if (gameBoard[row][col] == playersTurn) {
+                counter++;
+                if (counter >= 4) return 1;
+            }
+            else {
+                counter = 0;
+            }
+        }
+    }
 
+    // top-left to bottom-right - red diagonals
+    for (int column = 1; column < COLS - 4; rowstart++) {
+        counter = 0;
+        int row, colstart;
+        for (row = 0, column = 0; row < ROWS && column < COLS; row++, column++) {
+            if (gameBoard[row][column] == playersTurn) {
+                counter++;
+                if (counter >= 4) return 1;
+            }
+            else {
+                counter = 0;
+            }
+        }
+    }
+    return 0;
+}
 //void saveGame(){}
 
 
@@ -153,7 +184,7 @@ int main() {
 
                     printGameBoard(gameBoard);
 
-                    if (playerWonHorizontally(gameBoard, playersTurn) || playerWonVertically(gameBoard, playersTurn)) {
+                    if (playerWonHorizontally(gameBoard, playersTurn) || playerWonVertically(gameBoard, playersTurn) || playerWonDiagonally(gameBoard, playersTurn)) {
                         gameNotOver = 0;
                         printf("Player %d WON!!!", playersTurn);
                         break;
