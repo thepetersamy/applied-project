@@ -117,12 +117,13 @@ bool playerWonVertically(int gameBoard[ROWS][COLS], int playersturn) {
 bool playerWonDiagonally(int gameBoard[ROWS][COLS], int playersTurn) {
     // counter to check if 4 tokens of the same player in a column
     int counter = 0, rowstart;
-    for (int row = 0; row < ROWS - 4; row++) {
+    for (int row = 0; row < ROWS - 1-row; row++) {
         int  col;
-        for (row = 0, col = 0; row < ROWS && col < COLS; row++, col++) {
+        for (row = 0, col = COLS; row < ROWS && col <= 0; row++, col--) {
             if (gameBoard[row][col] == playersTurn) {
                 counter++;
-                if (counter >= 4) return 1;
+                if (counter == 4) 
+                    return 1;
             }
             else {
                 counter = 0;
