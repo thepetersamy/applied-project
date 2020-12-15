@@ -45,11 +45,9 @@ int getFirstFreeRow(int gameBoard[ROWS][COLS], int column) {
 }
 
 // function to switch player
-int switchPlayer(int player) {
-    if (player == 1)
-        return 2;
-    else
-        return 1;
+int switchPlayer(int playersTurn) {
+    
+    return playersTurn == 1 ? 2 : 1;
 }
 
 // checking if the board is full, hence a tie
