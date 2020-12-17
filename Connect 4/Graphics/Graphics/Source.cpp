@@ -35,45 +35,37 @@ int main()
 	g.setFullScreenMode();
 	g.hideCursor();
 	
-	// getting height and width of screen
-	int width = g.getWindowWidth(), height = g.getWindowHeight();
+	int width = g.getWindowWidth(), height = g.getWindowHeight();// getting height and width of screen
 	int xBoard = width / 2 - 350, yBoard = height / 2 - 300; // y and x board are for calibrating the game board at the center of the screen
 	int xC = xBoard, yC = yBoard-115;
-	
+	int counter=0; //to get user input
 
 	while (true)
 	{
 		g.beginDraw();
-<<<<<<< HEAD
-		drawConnect4(xBoard, yBoard);
-		
-		
-		g.setDrawingColor(COLORS::BLUE);
-=======
 
-		//setting color of background
-		g.fillScreen(COLORS::SKYBLUE);
-		
-		g.setDrawingColor(COLORS::BLUE);
-		g.setDrawingThickness(50);
-		g.drawSolidRectangle(xBoard, yBoard, 1025, 875); //boarder of gameboard
->>>>>>> 860ae2529e2829fd66d5bd607489f3bfed11a28c
-		
+		drawConnect4(xBoard, yBoard);		
+	
+
 		if (kbhit)
 		{
 			
 			if (GetAsyncKeyState(VK_RIGHT) && xC < xBoard +600)
 			{
 				xC += 100;
+				counter++;
 			}
 			else if (GetAsyncKeyState(VK_LEFT) && xC > xBoard)
 			{
-				xC -= 100;			
+				xC -= 100;	
+				counter--;
 			}				
 		}
+		g.setDrawingColor(COLORS::BLUE);
 		g.drawSolidCircle(xC, yC, 90);
 		g.endDraw();
+		printf("%d", counter);
 		Sleep(100);
 	}
-	getch();
+	getch();	
 }

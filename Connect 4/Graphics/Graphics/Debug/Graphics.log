@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 ﻿  Source.cpp
 D:\Chess\chess-game\Connect 4\Graphics\Graphics\CC212SGL.h(28,2): warning C4091: '__declspec(dllimport)': ignored on left of 'COLORS' when no variable is declared
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(52,7): warning C4551: function call missing argument list
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(52,7): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _kbhit. See online help for details.
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(68,2): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(50,7): warning C4551: function call missing argument list
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(50,7): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _kbhit. See online help for details.
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(70,2): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
   Graphics.vcxproj -> D:\Chess\chess-game\Connect 4\Graphics\Debug\Graphics.exe
-=======
-﻿
->>>>>>> 860ae2529e2829fd66d5bd607489f3bfed11a28c
