@@ -1,5 +1,5 @@
 ﻿  Source.cpp
-C:\Users\Peter\Desktop\chess\repo\chess-game\Connect 4\connect4\connect4\Source.cpp(136,18): warning C4101: 'colstart': unreferenced local variable
-C:\Users\Peter\Desktop\chess\repo\chess-game\Connect 4\connect4\connect4\Source.cpp(174,9): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\Peter\Desktop\chess\repo\chess-game\Connect 4\connect4\connect4\Source.cpp(134): warning C4700: uninitialized local variable 'rowstart' used
+C:\Users\Peter\Desktop\chess\repo\chess-game\Connect 4\connect4\connect4\Source.cpp(137,18): warning C4101: 'colstart': unreferenced local variable
+C:\Users\Peter\Desktop\chess\repo\chess-game\Connect 4\connect4\connect4\Source.cpp(175,9): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Peter\Desktop\chess\repo\chess-game\Connect 4\connect4\connect4\Source.cpp(135): warning C4700: uninitialized local variable 'rowstart' used
   connect4.vcxproj -> C:\Users\Peter\Desktop\chess\repo\chess-game\Connect 4\connect4\Debug\connect4.exe

@@ -25,10 +25,10 @@ int main()
 		g.beginDraw();
 
 		//setting color of background
-		g.fillScreen(COLORS:: BLACK);
+		g.fillScreen(COLORS::SKYBLUE);
 		
 		g.setDrawingColor(COLORS::BLUE);
-		g.setDrawingThickness(30);
+		g.setDrawingThickness(50);
 		g.drawSolidRectangle(xBoard, yBoard, 1025, 875); //boarder of gameboard
 		
 		g.setDrawingThickness(0);

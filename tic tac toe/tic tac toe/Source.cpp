@@ -97,11 +97,28 @@ bool playerWondiagonally(int gameBoard[SIZE][SIZE], int playersTurn) {
 		return 1;
 	}
 	return 0;
+
+
+	//int counter = 0;
+	//for (int i = 0; i < SIZE; i++) {
+	//	if (gameBoard[i][i] == playersTurn) {
+	//		counter++;
+	//	}
+	//}
+
+	//for (int i = SIZE-1; i >= 0; i--) {
+	//	if (gameBoard[i][i] == playersTurn) {
+	//		counter++;
+	//	}
+	//}
+
+
+	
 }
 
-int main() {
 
-	int gameBoard[SIZE][SIZE];    // = { {2,2,2}, {2,2,2}, {2,2,2} };
+void twoPlayerGame(int gameBoard[SIZE][SIZE]) {
+
 
 	int gameNotOver = 1;
 
@@ -113,7 +130,7 @@ int main() {
 	while (gameNotOver) {
 		bool played = 0;
 
-		int x,y;
+		int x, y;
 
 		// user input for column
 		printf("**PLAYER %d**\n", playersTurn);
@@ -121,7 +138,7 @@ int main() {
 		scanf("%d%d", &x, &y);
 		printf("\n\n");
 
-		
+
 		if (isBoardFull) {
 			if (coordinatesExist(x, y)) {
 
@@ -134,9 +151,9 @@ int main() {
 						printf("player %d WON!!!", playersTurn);
 						break;
 					}
-					
 
-					
+
+
 
 				}
 				else {
@@ -156,6 +173,100 @@ int main() {
 		}
 		playersTurn = switchPlayer(playersTurn);
 	}
+
+}
+
+
+void computersPlay(int gameBoard[SIZE][SIZE], int &x, int &y) {
+
+	// is real player about to win horizontally?
+	int counter = 0;
+	for (int row = 0; row < SIZE; row++) {
+		for (int column = 0; column < SIZE; column++) {
+			if (gameBoard[row][column] == 1) {
+				counter++;
+
+				if (counter == 2) {
+
+				}
+			}
+			else {
+				counter = 0;
+			}
+		}
+	}
+
+}
+
+void onePlayerGame(int gameBoard[SIZE][SIZE]) {
+
+
+
+	int gameNotOver = 1;
+
+	int playersTurn = 1;
+
+	createGameBoard(gameBoard);
+	printGameBoard(gameBoard);
+
+	while (gameNotOver) {
+		bool played = 0;
+
+		int x, y;
+
+		// user input for column
+		printf("**PLAYER %d**\n", playersTurn);
+		printf("plaese enter the (x,y) coordinates you wish to place the token in:");
+		scanf("%d%d", &x, &y);
+		printf("\n\n");
+
+
+		if (isBoardFull) {
+			if (coordinatesExist(x, y)) {
+
+				if (!isOccupied(gameBoard, x, y)) {
+
+					placeToken(gameBoard, playersTurn, x, y);
+					printGameBoard(gameBoard);
+					if (playerWonVertically(gameBoard, playersTurn) || playerWonHorizontally(gameBoard, playersTurn) || playerWondiagonally(gameBoard, playersTurn)) {
+
+						printf("player %d WON!!!", playersTurn);
+						break;
+					}
+
+
+
+
+				}
+				else {
+					printf("block is occuipied please choose another one");
+					continue;
+				}
+			}
+			else {
+				printf("coordinates you entered does not exist");
+				continue;
+			}
+		}
+		else {
+			printf("board is full, its a tie!");
+			gameNotOver = 0;
+			break;
+		}
+		playersTurn = switchPlayer(playersTurn);
+	}
+
+
+}
+
+
+
+int main() {
+
+	int gameBoard[SIZE][SIZE];    // = { {2,2,2}, {2,2,2}, {2,2,2} };
+
+	twoPlayerGame(gameBoard);
+
 
 	return 0;
 }

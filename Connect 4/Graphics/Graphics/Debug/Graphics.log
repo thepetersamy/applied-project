@@ -1,12 +1,1 @@
-﻿  Source.cpp
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\CC212SGL.h(28,2): warning C4091: '__declspec(dllimport)': ignored on left of 'COLORS' when no variable is declared
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(19,43): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(20,41): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(28,24): error C2589: 'constant': illegal token on right side of '::'
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(28): error C2144: syntax error: 'unknown-type' should be preceded by ')'
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(28,24): error C2660: 'CC212SGL::fillScreen': function does not take 0 arguments
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\CC212SGL.h(84,20): message : see declaration of 'CC212SGL::fillScreen'
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(28): error C2144: syntax error: 'unknown-type' should be preceded by ';'
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(28,27): error C2059: syntax error: ','
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(28,37): error C2059: syntax error: ')'
-D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(49,2): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+﻿
