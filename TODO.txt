@@ -1,0 +1,6 @@
+add save and load game
+develop tic tac toe bot
+add tic tac toe graphics
+add c4 graphics
+add undo and redo functions
+add sounds 
