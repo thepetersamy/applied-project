@@ -44,10 +44,20 @@ int main()
 	while (true)
 	{
 		g.beginDraw();
+<<<<<<< HEAD
 		drawConnect4(xBoard, yBoard);
 		
 		
 		g.setDrawingColor(COLORS::BLUE);
+=======
+
+		//setting color of background
+		g.fillScreen(COLORS::SKYBLUE);
+		
+		g.setDrawingColor(COLORS::BLUE);
+		g.setDrawingThickness(50);
+		g.drawSolidRectangle(xBoard, yBoard, 1025, 875); //boarder of gameboard
+>>>>>>> 860ae2529e2829fd66d5bd607489f3bfed11a28c
 		
 		if (kbhit)
 		{

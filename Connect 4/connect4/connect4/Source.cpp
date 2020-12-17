@@ -36,7 +36,6 @@ bool columnExists(int column) {
 // check for first free row in the gameboard
 //starting downwards for optimization
 int getFirstFreeRow(int gameBoard[ROWS][COLS], int column) {
-
     for (int row = ROWS; row >= 0; row--) {
         if (!gameBoard[row][column])
             return row;
@@ -147,7 +146,48 @@ bool playerWonDiagonally(int gameBoard[ROWS][COLS], int playersTurn) {
     }
     return 0;
 }
-//void saveGame(){}
+
+void saveGame(int gameBoard[ROWS][COLS], const char* fileName) {
+
+    FILE* file = fopen(fileName, "w+");
+
+
+
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            char current[10];
+            sprintf(current, "%d", gameBoard[i][j]);
+            fputs(current, file);
+        }
+    }
+    printf("savedddddd");
+
+    fclose(file);
+
+}
+
+
+void loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
+
+    FILE* file = fopen(fileName, "r");
+    int current;
+    int arr[ROWS * COLS];
+    int x = 0;
+
+
+    for (int i = 0; i < ROWS * COLS; i++) {
+        fscanf(file, "%c", &current);
+        arr[i] = current;
+    }
+
+
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            gameBoard[i][j] = char(arr[x++] - '0');
+        }
+    }
+    fclose(file);
+}
 
 
 int main() {
@@ -185,7 +225,7 @@ int main() {
 
                     printGameBoard(gameBoard);
 
-                    if (playerWonHorizontally(gameBoard, playersTurn) || playerWonVertically(gameBoard, playersTurn) || playerWonDiagonally(gameBoard, playersTurn)) {
+                    if (playerWonHorizontally(gameBoard, playersTurn) || playerWonVertically(gameBoard, playersTurn) ) {
                         gameNotOver = 0;
                         printf("Player %d WON!!!", playersTurn);
                         break;
