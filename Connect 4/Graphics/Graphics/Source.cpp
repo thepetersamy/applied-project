@@ -38,7 +38,7 @@ int main()
 	int width = g.getWindowWidth(), height = g.getWindowHeight();// getting height and width of screen
 	int xBoard = width / 2 - 350, yBoard = height / 2 - 300; // y and x board are for calibrating the game board at the center of the screen
 	int xC = xBoard, yC = yBoard-115;
-	int counter=0; //to get user input
+	int userInput=0; //to get user input
 
 	while (true)
 	{
@@ -53,19 +53,19 @@ int main()
 			if (GetAsyncKeyState(VK_RIGHT) && xC < xBoard +600)
 			{
 				xC += 100;
-				counter++;
+				userInput++;
 			}
 			else if (GetAsyncKeyState(VK_LEFT) && xC > xBoard)
 			{
 				xC -= 100;	
-				counter--;
+				userInput--;
 			}				
 		}
 		g.setDrawingColor(COLORS::BLUE);
 		g.drawSolidCircle(xC, yC, 90);
 		g.endDraw();
-		printf("%d", counter);
-		Sleep(100);
+		printf("%d", userInput);
+		Sleep(150);
 	}
 	getch();	
 }
