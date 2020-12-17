@@ -59,12 +59,14 @@ int main()
 			{
 				xC -= 100;	
 				userInput--;
-			}				
+			}
+			else if(GetAsyncKeyState(27))
+				break;
 		}
 		g.setDrawingColor(COLORS::BLUE);
 		g.drawSolidCircle(xC, yC, 90);
 		g.endDraw();
-		printf("%d", userInput);
+		printf("%d", userInput);//test
 		Sleep(150);
 	}
 	getch();	
