@@ -1,9 +1,9 @@
 ﻿  Source.cpp
-C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(144,7): warning C4551: function call missing argument list
-C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(140,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(271,7): warning C4551: function call missing argument list
-C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(263,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(321,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(312,9): warning C4101: 'y': unreferenced local variable
-C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(312,6): warning C4101: 'x': unreferenced local variable
+C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(161,7): warning C4551: function call missing argument list
+C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(157,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(290,7): warning C4551: function call missing argument list
+C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(281,4): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(342,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(333,9): warning C4101: 'y': unreferenced local variable
+C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\tic tac toe\Source.cpp(333,6): warning C4101: 'x': unreferenced local variable
   tic tac toe.vcxproj -> C:\Users\Peter\Desktop\chess\repo\chess-game\tic tac toe\Debug\tic tac toe.exe

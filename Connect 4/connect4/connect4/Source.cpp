@@ -84,6 +84,7 @@ bool playerWonHorizontally(int gameBoard[ROWS][COLS], int playersturn) {
                 }
             }
         }
+        counter = 0;
     }
     return 0;
 }
@@ -110,6 +111,7 @@ bool playerWonVertically(int gameBoard[ROWS][COLS], int playersturn) {
                 }
             }
         }
+        counter = 0;
     }
     return 0;
 }
@@ -160,7 +162,7 @@ void saveGame(int gameBoard[ROWS][COLS], const char* fileName) {
             fputs(current, file);
         }
     }
-    printf("savedddddd");
+    printf("[Game Saved]");
 
     fclose(file);
 
@@ -187,6 +189,7 @@ void loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
         }
     }
     fclose(file);
+    printf("[Game Loaded]");
 }
 
 

@@ -59,6 +59,7 @@ bool playerWonHorizontally(int gameBoard[SIZE][SIZE], int playersTurn) {
 			if (gameBoard[row][column] == playersTurn) {
 				counter++;
 				if (counter == 3) {
+					printf("########    WON HORIZONTALLY    ########");
 					return 1;
 				}
 			}
@@ -66,7 +67,9 @@ bool playerWonHorizontally(int gameBoard[SIZE][SIZE], int playersTurn) {
 				counter = 0;
 			}
 		}
+		counter = 0;
 	}
+	
 	return 0;
 }
 
@@ -79,6 +82,7 @@ bool playerWonVertically(int gameBoard[SIZE][SIZE], int playersTurn) {
 			if (gameBoard[row][column] == playersTurn) {
 				counter++;
 				if (counter == 3) {
+					printf("########    WON VERTICALLY    ########");
 					return 1;
 				}
 			}
@@ -86,36 +90,49 @@ bool playerWonVertically(int gameBoard[SIZE][SIZE], int playersTurn) {
 				counter = 0;
 			}
 		}
+		counter = 0;
 	}
 	return 0;
 }
 
 
 bool playerWondiagonally(int gameBoard[SIZE][SIZE], int playersTurn) {
-	if (gameBoard[0][0] == playersTurn && gameBoard[1][1] == playersTurn && gameBoard[2][2] == playersTurn){
-		return 1;
+	//if (gameBoard[0][0] == playersTurn && gameBoard[1][1] == playersTurn && gameBoard[2][2] == playersTurn){
+	//	printf("########    WON DIAGONALLY    ########");
+	//	return 1;
+	//}
+	//if (gameBoard[0][2] == playersTurn && gameBoard[1][1] == playersTurn && gameBoard[2][0] == playersTurn) {
+	//	printf("########    WON DIAGONALLY    ########");
+	//	return 1;
+	//}
+	//return 0;
+
+
+	int counter = 0;
+	for (int i = 0; i < SIZE; i++) {
+		if (gameBoard[i][i] == playersTurn) {
+			counter++;
+			if (counter == 3) {
+				return 1;
+			}
+		}
+		else {
+			counter = 0;
+		}
 	}
-	if (gameBoard[0][2] == playersTurn && gameBoard[1][1] == playersTurn && gameBoard[2][0] == playersTurn) {
-		return 1;
+	counter = 0;
+	for (int i = 0; i < SIZE; i++) {
+		if (gameBoard[i][SIZE-i-1] == playersTurn) {
+			counter++;
+			if (counter == 3) {
+				return 1;
+			}
+		}
+		else {
+			counter = 0;
+		}
 	}
 	return 0;
-
-
-	//int counter = 0;
-	//for (int i = 0; i < SIZE; i++) {
-	//	if (gameBoard[i][i] == playersTurn) {
-	//		counter++;
-	//	}
-	//}
-
-	//for (int i = SIZE-1; i >= 0; i--) {
-	//	if (gameBoard[i][i] == playersTurn) {
-	//		counter++;
-	//	}
-	//}
-
-
-	
 }
 
 
@@ -150,7 +167,7 @@ void twoPlayerGame(int gameBoard[SIZE][SIZE]) {
 					printGameBoard(gameBoard);
 					if (playerWonVertically(gameBoard, playersTurn) || playerWonHorizontally(gameBoard, playersTurn) || playerWondiagonally(gameBoard, playersTurn)) {
 
-						printf("player %d WON!!!", playersTurn);
+						printf("player %d WON!!!\n", playersTurn);
 						break;
 					}
 
@@ -159,17 +176,17 @@ void twoPlayerGame(int gameBoard[SIZE][SIZE]) {
 
 				}
 				else {
-					printf("block is occuipied please choose another one");
+					printf("block is occuipied please choose another one\n");
 					continue;
 				}
 			}
 			else {
-				printf("coordinates you entered does not exist");
+				printf("coordinates you entered does not exist\n");
 				continue;
 			}
 		}
 		else {
-			printf("board is full, its a tie!");
+			printf("board is full, its a tie!\n");
 			gameNotOver = 0;
 			break;
 		}
@@ -236,6 +253,7 @@ void generateRandomCordinates(int gameBoard[SIZE][SIZE], int* x, int* y) {
 	//printf("%d\n", rand() % 3);
 	
 	while (isOccupied(gameBoard, *x = rand() % 3, *y = rand() % 3));
+	printf("(%d,%d)", *x, *y);
 }
 
 void onePlayerGame(int gameBoard[SIZE][SIZE]) {
@@ -258,13 +276,14 @@ void onePlayerGame(int gameBoard[SIZE][SIZE]) {
 		if (playersTurn == 1) {
 			// user input for column
 			printf("**PLAYER %d**\n", playersTurn);
-			printf("plaese enter the (x,y) coordinates you wish to place the token in:");
+			printf("plaese enter the (x,y) coordinates you wish to place the token at:");
 
 			scanf("%d%d", &x, &y);
 			printf("\n\n");
 
 		}
-		else if (playersTurn) {
+		else if (playersTurn == 2) {
+			printf("**PLAYER %d**\n", playersTurn);
 			generateRandomCordinates(gameBoard, &x, &y);
 			printf("computer played at (%d,%d)\n\n", x , y );
 		}
@@ -277,26 +296,28 @@ void onePlayerGame(int gameBoard[SIZE][SIZE]) {
 					printGameBoard(gameBoard);
 					if (playerWonVertically(gameBoard, playersTurn) || playerWonHorizontally(gameBoard, playersTurn) || playerWondiagonally(gameBoard, playersTurn)) {
 
-						printf("COMPUTER WON!!!!");
+						if (playersTurn == 1) {
+							printf("YOU WON!!!");
+						}
+						else {
+							printf("COMPUTER WON!!!!");
+						}
 						break;
 					}
 
-
-
-
 				}
 				else {
-					printf("block is occuipied please choose another one");
+					printf("block is occuipied please choose another one\n");
 					continue;
 				}
 			}
 			else {
-				printf("coordinates you entered does not exist");
+				printf("coordinates you entered does not exist\n");
 				continue;
 			}
 		}
 		else {
-			printf("board is full, its a tie!");
+			printf("board is full, its a tie!\n");
 			gameNotOver = 0;
 			break;
 		}
