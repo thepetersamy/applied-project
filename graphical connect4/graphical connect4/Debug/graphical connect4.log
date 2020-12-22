@@ -1,0 +1,11 @@
+﻿  Source.cpp
+C:\Users\Peter\Desktop\chess\repo\chess-game\graphical connect4\graphical connect4\CC212SGL.h(28,2): warning C4091: '__declspec(dllimport)': ignored on left of 'COLORS' when no variable is declared
+C:\Users\Peter\Desktop\chess\repo\chess-game\graphical connect4\graphical connect4\Source.cpp(125,18): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Peter\Desktop\chess\repo\chess-game\graphical connect4\graphical connect4\Source.cpp(132,13): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Peter\Desktop\chess\repo\chess-game\graphical connect4\graphical connect4\Source.cpp(150,22): warning C4477: 'fscanf' : format string '%c' requires an argument of type 'char *', but variadic argument 1 has type 'int *'
+C:\Users\Peter\Desktop\chess\repo\chess-game\graphical connect4\graphical connect4\Source.cpp(143,18): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Peter\Desktop\chess\repo\chess-game\graphical connect4\graphical connect4\Source.cpp(150,9): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Peter\Desktop\chess\repo\chess-game\graphical connect4\graphical connect4\Source.cpp(199,9): warning C4551: function call missing argument list
+C:\Users\Peter\Desktop\chess\repo\chess-game\graphical connect4\graphical connect4\Source.cpp(199,9): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _kbhit. See online help for details.
+C:\Users\Peter\Desktop\chess\repo\chess-game\graphical connect4\graphical connect4\Source.cpp(258,5): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+  graphical connect4.vcxproj -> C:\Users\Peter\Desktop\chess\repo\chess-game\graphical connect4\Debug\graphical connect4.exe
