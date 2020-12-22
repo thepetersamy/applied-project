@@ -192,29 +192,7 @@ void drawGameBoard(int gameBoard[ROWS][COLS], int xStartingBoardCoordinates, int
 
 }
 
-void controlTokenGraphically(int xBoard, int yBoard, int &userInput) {
-    int xToken = xBoard;
-    int yToken = yBoard - 115;
-    
-    if (kbhit)
-    {
 
-        if (GetAsyncKeyState(VK_RIGHT) && xToken < xBoard + 600)
-        {
-            xToken += 100;
-            userInput++;
-        }
-        else if (GetAsyncKeyState(VK_LEFT) && xToken > xBoard)
-        {
-            xToken -= 100;
-            userInput--;
-        }
-      
-    }
-    graphics.setDrawingColor(COLORS::YELLOW);
-    graphics.drawSolidCircle(xToken, yToken, 90);
-
-}
 
 int main() {
 	
@@ -235,7 +213,7 @@ int main() {
     int yToken = yBoard - 115;
 
     int gameBoard[ROWS][COLS];
-    int userInput; //to get user input
+    int userInput = 0; //to get user input
     createGameBoard(gameBoard);
 
 
@@ -248,9 +226,31 @@ int main() {
 
         drawGameBoard(gameBoard, xBoard, yBoard);
 
-        //printf("%d", userInput);//test
+        if (kbhit)
+        {
+            if (GetAsyncKeyState(VK_SPACE)) {
 
-        controlTokenGraphically(xBoard, yBoard, userInput);
+            }
+
+            else if (GetAsyncKeyState(VK_RIGHT) && xToken < xBoard + 600)
+            {
+                xToken += 100;
+                userInput++;
+            }
+            else if (GetAsyncKeyState(VK_LEFT) && xToken > xBoard)
+            {
+                xToken -= 100;
+                userInput--;
+            }
+
+            else if(GetAsyncKeyState(27))
+                break;
+        }
+        graphics.setDrawingColor(COLORS::YELLOW);
+        graphics.drawSolidCircle(xToken, yToken, 90);
+
+
+        //printf("%d", userInput);//test
 
         Sleep(150);
         graphics.endDraw();
