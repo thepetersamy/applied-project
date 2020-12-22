@@ -7,6 +7,9 @@
 #define ROWS 6
 #define COLS 7
 
+#define HEIGHT 700
+#define WIDTH 600
+
 CC212SGL graphics;
 
 void createGameBoard(int gameBoard[ROWS][COLS]){
@@ -120,46 +123,46 @@ bool playerWonDiagonally(int gameBoard[ROWS][COLS], int playersTurn) {
 
     return 0;
 }
-void saveGame(int gameBoard[ROWS][COLS], const char* fileName) {
-
-    FILE* file = fopen(fileName, "w+");
-
-
-
-    for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; j < COLS; j++) {
-            char current[10];
-            sprintf(current, "%d", gameBoard[i][j]);
-            fputs(current, file);
-        }
-    }
-    printf("[Game Saved]");
-
-    fclose(file);
-
-}
-void loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
-
-    FILE* file = fopen(fileName, "r");
-    int current;
-    int arr[ROWS * COLS];
-    int x = 0;
-
-
-    for (int i = 0; i < ROWS * COLS; i++) {
-        fscanf(file, "%c", &current);
-        arr[i] = current;
-    }
-
-
-    for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; j < COLS; j++) {
-            gameBoard[i][j] = char(arr[x++] - '0');
-        }
-    }
-    fclose(file);
-    printf("[Game Loaded]");
-}
+//void saveGame(int gameBoard[ROWS][COLS], const char* fileName) {
+//
+//    FILE* file = fopen(fileName, "w+");
+//
+//
+//
+//    for (int i = 0; i < ROWS; i++) {
+//        for (int j = 0; j < COLS; j++) {
+//            char current[10];
+//            sprintf(current, "%d", gameBoard[i][j]);
+//            fputs(current, file);
+//        }
+//    }
+//    printf("[Game Saved]");
+//
+//    fclose(file);
+//
+//}
+//void loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
+//
+//    FILE* file = fopen(fileName, "r");
+//    int current;
+//    int arr[ROWS * COLS];
+//    int x = 0;
+//
+//
+//    for (int i = 0; i < ROWS * COLS; i++) {
+//        fscanf(file, "%c", &current);
+//        arr[i] = current;
+//    }
+//
+//
+//    for (int i = 0; i < ROWS; i++) {
+//        for (int j = 0; j < COLS; j++) {
+//            gameBoard[i][j] = char(arr[x++] - '0');
+//        }
+//    }
+//    fclose(file);
+//    printf("[Game Loaded]");
+//}
 
 
 void drawGameBoard(int gameBoard[ROWS][COLS], int xStartingBoardCoordinates, int yStartingBoardCoordinates) {
