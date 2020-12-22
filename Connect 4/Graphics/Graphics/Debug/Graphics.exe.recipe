@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <ProjectOutputs>
-    <ProjectOutput>
-      <FullPath>D:\Chess\chess-game\Connect 4\Graphics\Debug\Graphics.exe</FullPath>
-    </ProjectOutput>
-  </ProjectOutputs>
-  <ContentFiles />
-  <SatelliteDlls />
-  <NonRecipeFileRefs />
+  <ProjectOutputs>C:\Users\Peter\Desktop\chess\repo\chess-game\Connect 4\Graphics\Debug\Graphics.exe</ProjectOutputs>
+  <ContentFiles></ContentFiles>
+  <SatelliteDlls></SatelliteDlls>
+  <NonRecipeFileRefs></NonRecipeFileRefs>
 </Project>
