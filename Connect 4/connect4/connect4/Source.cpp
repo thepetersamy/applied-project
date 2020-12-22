@@ -116,8 +116,7 @@ bool playerWonVertically(int gameBoard[ROWS][COLS], int playersturn) {
     return 0;
 }
 bool playerWonDiagonally(int gameBoard[ROWS][COLS], int playersTurn) {
-
-
+    return 0;
 }
 
 
