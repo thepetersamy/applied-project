@@ -227,7 +227,7 @@ int main() {
     while (gameNotOver) {
 
 
-        bool played = 0;
+        //bool played = 0;
 
         int column;
 
