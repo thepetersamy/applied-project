@@ -122,6 +122,20 @@ bool playerWonVertically(int gameBoard[ROWS][COLS], int playersturn) {
 }
 bool playerWonDiagonally(int gameBoard[ROWS][COLS], int playersTurn) {
 
+    // ascendingDiagonalCheck 
+    for (int i = 3; i < ROWS; i++) {
+        for (int j = 0; j < COLS - 3; j++) {
+            if (gameBoard[i][j] == playersTurn && gameBoard[i - 1][j + 1] == playersTurn && gameBoard[i - 2][j + 2] == playersTurn && gameBoard[i - 3][j + 3] == playersTurn)
+                return 1;
+        }
+    }
+    // descendingDiagonalCheck
+    for (int i = 3; i < ROWS; i++) {
+        for (int j = 3; j < COLS; j++) {
+            if (gameBoard[i][j] == playersTurn && gameBoard[i - 1][j - 1] == playersTurn && gameBoard[i - 2][j - 2] == playersTurn && gameBoard[i - 3][j - 3] == playersTurn)
+                return 1;
+        }
+    }
     return 0;
 }
 void saveGame(int gameBoard[ROWS][COLS], const char* fileName) {
@@ -247,7 +261,7 @@ int main() {
 
                             gameBoard[row][userInput] = playersTurn;
 
-                            if (playerWonHorizontally(gameBoard, playersTurn) || playerWonVertically(gameBoard, playersTurn)) {
+                            if (playerWonHorizontally(gameBoard, playersTurn) || playerWonVertically(gameBoard, playersTurn) || playerWonDiagonally(gameBoard, playersTurn)) {
                                 drawGameBoard(gameBoard, xBoard, yBoard);
 
                                 g.setDrawingColor(COLORS::LIME);
