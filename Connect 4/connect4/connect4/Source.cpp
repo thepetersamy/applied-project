@@ -1,5 +1,6 @@
 #include<stdio.h>
-//#include<sqlite3.h>
+#include<time.h>
+#include<stdlib.h>
 #define ROWS 6
 #define COLS 7
 
@@ -62,7 +63,7 @@ bool boardNotFull(int gameBoard[ROWS][COLS]) {
 }
 
 // implement with counter and break when counter == 4
-bool playerWonHorizontally(int gameBoard[ROWS][COLS], int playersturn) {
+bool playerWonHorizontally(int gameBoard[ROWS][COLS], int playersTurn) {
 
     // counter to check if 4 tokens of the same player in a row
     int counter = 0;
@@ -71,9 +72,9 @@ bool playerWonHorizontally(int gameBoard[ROWS][COLS], int playersturn) {
 
         // opt: checking if the third column has a token same as players turn
         // because if not no 4 tokens can be placed in a row
-        if (gameBoard[row][3] == playersturn) { 
+        if (gameBoard[row][3] == playersTurn) { 
             for (int column = COLS - 1; column >= 0; column--) {
-                if (gameBoard[row][column] == playersturn) {
+                if (gameBoard[row][column] == playersTurn) {
                     counter++;
                     if (counter == 4) {
                         return 1;
@@ -89,7 +90,7 @@ bool playerWonHorizontally(int gameBoard[ROWS][COLS], int playersturn) {
     return 0;
 }
 
-bool playerWonVertically(int gameBoard[ROWS][COLS], int playersturn) {
+bool playerWonVertically(int gameBoard[ROWS][COLS], int playersTurn) {
     // counter to check if 4 tokens of the same player in a column
     int counter = 0;
 
@@ -98,9 +99,9 @@ bool playerWonVertically(int gameBoard[ROWS][COLS], int playersturn) {
 
         // opt: checking if the third column has a token same as players turn
         // because if it doesn't then the player can't place
-        if (gameBoard[2][column] == playersturn) {
+        if (gameBoard[2][column] == playersTurn) {
             for (int row = ROWS - 1; row >= 0; row--) {
-                if (gameBoard[row][column] == playersturn) {
+                if (gameBoard[row][column] == playersTurn) {
                     counter++;
                     if (counter == 4) {
                         return 1;
@@ -115,58 +116,30 @@ bool playerWonVertically(int gameBoard[ROWS][COLS], int playersturn) {
     }
     return 0;
 }
+
+
+
 bool playerWonDiagonally(int gameBoard[ROWS][COLS], int playersTurn) {
+  
+    // ascendingDiagonalCheck 
+    for (int i = 3; i < ROWS; i++) {
+        for (int j = 0; j < COLS - 3; j++) {
+            if (gameBoard[i][j] == playersTurn && gameBoard[i - 1][j + 1] == playersTurn && gameBoard[i - 2][j + 2] == playersTurn && gameBoard[i - 3][j + 3] == playersTurn)
+                return 1;
+        }
+    }
+    // descendingDiagonalCheck
+    for (int i = 3; i < ROWS; i++) {
+        for (int j = 3; j < COLS; j++) {
+            if (gameBoard[i][j] == playersTurn && gameBoard[i - 1][j - 1] == playersTurn && gameBoard[i - 2][j - 2] == playersTurn && gameBoard[i - 3][j - 3] == playersTurn)
+                return 1;
+        }
+    }
     return 0;
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//bool playerWonDiagonally(int gameBoard[ROWS][COLS], int playersTurn) {
-    //// counter to check if 4 tokens of the same player in a column
-    //int counter = 0, rowstart;
-    //for (int row = 0; row < ROWS - 1-row; row++) {
-    //    int  col;
-    //    for (row = 0, col = COLS; row < ROWS && col <= 0; row++, col--) {
-    //        if (gameBoard[row][col] == playersTurn) {
-    //            counter++;
-    //            if (counter == 4) 
-    //                return 1;
-    //        }
-    //        else {
-    //            counter = 0;
-    //        }
-    //    }
-    //}
-
-    //// top-left to bottom-right - red diagonals
-    //for (int column = 1; column < COLS - 4; rowstart++) {
-    //    counter = 0;
-    //    int row, colstart;
-    //    for (row = 0, column = 0; row < ROWS && column < COLS; row++, column++) {
-    //        if (gameBoard[row][column] == playersTurn) {
-    //            counter++;
-    //            if (counter >= 4) return 1;
-    //        }
-    //        else {
-    //            counter = 0;
-    //        }
-    //    }
-    //}
-    //return 0;
-//}
 
 void saveGame(int gameBoard[ROWS][COLS], const char* fileName) {
 
@@ -212,7 +185,23 @@ void loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
 }
 
 
+
+int generateRandomColumn(int gameBoard[ROWS][COLS]) {
+    int column;
+    time_t t;
+    srand((unsigned)time(&t));
+
+    while (getFirstFreeRow(gameBoard, column = rand() % 6) == -1);
+    return column;
+}
+
+
+
 int main() {
+
+    int playerChoice;
+    printf("please enter 1 or 2 for a sigleplayer or multiplayer game: ");
+    scanf("%d", &playerChoice);
 
     int gameNotOver = 1;
 
@@ -231,11 +220,24 @@ int main() {
 
         int column;
 
-        // user input for column
         printf("**PLAYER %d**\n", playersTurn);
-        printf("Enter the column you wish to choose (0-6):");
-        scanf("%d", &column);
-        printf("\n\n");
+        if (playerChoice == 2) {
+            // user input for column
+            printf("Enter the column you wish to choose (0-6):");
+            scanf("%d", &column);
+            printf("\n\n");
+        }
+        else if (playerChoice == 1) {
+            if (playersTurn == 1) {
+                printf("Enter the column you wish to choose (0-6):");
+                scanf("%d", &column);
+                printf("\n\n");
+            }
+            else if (playersTurn == 2) {
+                column = generateRandomColumn(gameBoard);
+                printf("computer played at column %d\n", column);
+            }
+        }
 
         if (boardNotFull(gameBoard)) {
             if (columnExists(column)) {
@@ -247,7 +249,7 @@ int main() {
 
                     printGameBoard(gameBoard);
 
-                    if (playerWonHorizontally(gameBoard, playersTurn) || playerWonVertically(gameBoard, playersTurn) ) {
+                    if (playerWonHorizontally(gameBoard, playersTurn) || playerWonVertically(gameBoard, playersTurn) || playerWonDiagonally(gameBoard, playersTurn)) {
                         gameNotOver = 0;
                         printf("Player %d WON!!!", playersTurn);
                         break;
