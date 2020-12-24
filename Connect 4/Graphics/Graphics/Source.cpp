@@ -10,7 +10,7 @@
 #define HEIGHT 600
 #define WIDTH 700
 
-CC212SGL graphics;
+CC212SGL g;
 
 void createGameBoard(int gameBoard[ROWS][COLS]) {
 
@@ -168,28 +168,28 @@ void loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
 
 void drawGameBoard(int gameBoard[ROWS][COLS], int xStartingBoardCoordinates, int yStartingBoardCoordinates) {
     //setting color of background
-    graphics.fillScreen(COLORS::BLACK);
+    g.fillScreen(COLORS::BLACK);
 
-    graphics.setDrawingColor(COLORS::BLUE);
-    graphics.setDrawingThickness(30);
-    graphics.drawSolidRectangle(xStartingBoardCoordinates, yStartingBoardCoordinates, WIDTH, HEIGHT); //border of gameboard
+    g.setDrawingColor(COLORS::BLUE);
+    g.setDrawingThickness(30);
+    g.drawSolidRectangle(xStartingBoardCoordinates, yStartingBoardCoordinates, WIDTH, HEIGHT); //border of gameboard
 
-    graphics.setDrawingThickness(0);
+    g.setDrawingThickness(0);
 
     for (int row = 0, j = yStartingBoardCoordinates; row < ROWS; row++, j += 100) {
         for (int column = 0, i = xStartingBoardCoordinates; column < COLS; column++, i += 100) {
 
             if (gameBoard[row][column] == 0) {
-                graphics.setDrawingColor(COLORS::WHITE);
-                graphics.drawSolidCircle(i, j, 90);
+                g.setDrawingColor(COLORS::WHITE);
+                g.drawSolidCircle(i, j, 90);
             }
             else if (gameBoard[row][column] == 1) {
-                graphics.setDrawingColor(COLORS::RED);
-                graphics.drawSolidCircle(i, j, 90);
+                g.setDrawingColor(COLORS::RED);
+                g.drawSolidCircle(i, j, 90);
             }
             else if (gameBoard[row][column] == 2) {
-                graphics.setDrawingColor(COLORS::YELLOW);
-                graphics.drawSolidCircle(i, j, 90);
+                g.setDrawingColor(COLORS::YELLOW);
+                g.drawSolidCircle(i, j, 90);
             }
         }
     }
@@ -200,13 +200,13 @@ void drawGameBoard(int gameBoard[ROWS][COLS], int xStartingBoardCoordinates, int
 
 int main() {
 
-    graphics.setup();
+    g.setup();
 
-    graphics.setFullScreenMode();
-    graphics.hideCursor();
+    g.setFullScreenMode();
+    g.hideCursor();
     // getting height and width of screen
-    int width = graphics.getWindowWidth();
-    int height = graphics.getWindowHeight();
+    int width = g.getWindowWidth();
+    int height = g.getWindowHeight();
 
     // y and x board are for calibrating the game board at the center of the screen
     int xBoard = width / 2 - WIDTH/2;
@@ -226,7 +226,7 @@ int main() {
 
     while (true) {
 
-        graphics.beginDraw();
+        g.beginDraw();
 
         drawGameBoard(gameBoard, xBoard, yBoard);
 
@@ -250,14 +250,14 @@ int main() {
             else if (GetAsyncKeyState(27))
                 break;
         }
-        graphics.setDrawingColor(COLORS::YELLOW);
-        graphics.drawSolidCircle(xToken, yToken, 90);
+        g.setDrawingColor(COLORS::YELLOW);
+        g.drawSolidCircle(xToken, yToken, 90);
 
 
         //printf("%d", userInput);//test
 
         Sleep(150);
-        graphics.endDraw();
+        g.endDraw();
     }
     getch();
 
