@@ -168,7 +168,7 @@ void loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
 
 void drawGameBoard(int gameBoard[ROWS][COLS], int xStartingBoardCoordinates, int yStartingBoardCoordinates) {
     //setting color of background
-    g.fillScreen(COLORS::BLACK);
+    g.fillScreen(COLORS::WHITE);
 
     g.setDrawingColor(COLORS::BLUE);
     g.setDrawingThickness(30);
@@ -248,16 +248,31 @@ int main() {
                             gameBoard[row][userInput] = playersTurn;
 
                             if (playerWonHorizontally(gameBoard, playersTurn) || playerWonVertically(gameBoard, playersTurn)) {
-                                gameNotOver = 0;
-                                printf("Player %d WON!!!", playersTurn);
                                 drawGameBoard(gameBoard, xBoard, yBoard);
+
+                                g.setDrawingColor(COLORS::LIME);
+                                g.drawSolidRectangle(width / 2 - 280, height / 2 - 80, 510, 80);
+                                g.setDrawingColor(COLORS::BLACK);
+                                g.setFontSizeAndBoldness(80, 200);
+                                char tmp[50];
+                                sprintf(tmp,"Player %d WON!!!", playersTurn);
+                                g.drawText(width/2-280, height / 2-80,tmp);
+                                g.endDraw();
+                                
+                                gameNotOver = 0;
                                 break;
                             }
 
 
                         }
                         else {
-                            printf("Please choose another one, column is full\n");
+                            g.setDrawingColor(COLORS::LIME);
+                            g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
+                            g.setDrawingColor(COLORS::BLACK);
+                            g.setFontSizeAndBoldness(80, 200);
+                            g.drawText(width / 2 - 550, height / 2 - 80, "Please choose another one, column is full");
+                            g.endDraw();
+                            Sleep(1500);
                             continue;
                         }
 
@@ -271,6 +286,7 @@ int main() {
                 else {
                     printf("It's a tie, no one wins\n");
                     drawGameBoard(gameBoard, xBoard, yBoard);
+                    g.endDraw();
                     break;
                 }
 

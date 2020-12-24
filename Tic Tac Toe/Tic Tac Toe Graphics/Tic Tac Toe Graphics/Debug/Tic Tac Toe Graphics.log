@@ -1,3 +1,4 @@
 ﻿  Source.cpp
 D:\Chess\chess-game\Tic Tac Toe\Tic Tac Toe Graphics\Tic Tac Toe Graphics\CC212SGL.h(28,2): warning C4091: '__declspec(dllimport)': ignored on left of 'COLORS' when no variable is declared
+  LINK : D:\Chess\chess-game\Tic Tac Toe\Tic Tac Toe Graphics\Debug\Tic Tac Toe Graphics.exe not found or not built by the last incremental link; performing full link
   Tic Tac Toe Graphics.vcxproj -> D:\Chess\chess-game\Tic Tac Toe\Tic Tac Toe Graphics\Debug\Tic Tac Toe Graphics.exe
