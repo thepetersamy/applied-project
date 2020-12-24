@@ -184,11 +184,11 @@ void drawGameBoard(int gameBoard[ROWS][COLS], int xStartingBoardCoordinates, int
                 g.drawSolidCircle(i, j, 90);
             }
             else if (gameBoard[row][column] == 1) {
-                g.setDrawingColor(COLORS::RED);
+                g.setDrawingColor(COLORS::YELLOW);
                 g.drawSolidCircle(i, j, 90);
             }
             else if (gameBoard[row][column] == 2) {
-                g.setDrawingColor(COLORS::YELLOW);
+                g.setDrawingColor(COLORS::RED);
                 g.drawSolidCircle(i, j, 90);
             }
         }
@@ -220,7 +220,10 @@ int main() {
     int userInput = 0; //to get user input
     createGameBoard(gameBoard);
 
+    int gameNotOver = 1;
 
+    //for iterating between players
+    int playersTurn = 1;
 
 
 
@@ -230,12 +233,51 @@ int main() {
 
         drawGameBoard(gameBoard, xBoard, yBoard);
 
+
+
         if (kbhit)
-        {
-            if (GetAsyncKeyState(VK_SPACE)) {
+        {         
+            if (GetAsyncKeyState(VK_SPACE))
+            {
+                if (boardNotFull(gameBoard)) {
+                    if (columnExists(userInput)) {
+                        if (getFirstFreeRow(gameBoard, userInput) != -1) {
+
+                            int row = getFirstFreeRow(gameBoard, userInput);
+
+                            gameBoard[row][userInput] = playersTurn;
+
+                            if (playerWonHorizontally(gameBoard, playersTurn) || playerWonVertically(gameBoard, playersTurn)) {
+                                gameNotOver = 0;
+                                printf("Player %d WON!!!", playersTurn);
+                                drawGameBoard(gameBoard, xBoard, yBoard);
+                                break;
+                            }
+
+
+                        }
+                        else {
+                            printf("Please choose another one, column is full\n");
+                            continue;
+                        }
+
+                    }
+                    else {
+                        printf("column doesn't exist, please choose anther one\n");
+                        continue;
+                    }
+
+                }
+                else {
+                    printf("It's a tie, no one wins\n");
+                    drawGameBoard(gameBoard, xBoard, yBoard);
+                    break;
+                }
+
+                // switching player every turn
+                playersTurn = switchPlayer(playersTurn);
 
             }
-
             else if (GetAsyncKeyState(VK_RIGHT) && xToken < xBoard + HEIGHT)
             {
                 xToken += 100;
@@ -250,7 +292,10 @@ int main() {
             else if (GetAsyncKeyState(27))
                 break;
         }
-        g.setDrawingColor(COLORS::YELLOW);
+        if(playersTurn == 1)
+            g.setDrawingColor(COLORS::YELLOW);
+        else if(playersTurn == 2)
+            g.setDrawingColor(COLORS::RED);
         g.drawSolidCircle(xToken, yToken, 90);
 
 
