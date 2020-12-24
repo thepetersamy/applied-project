@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include "CC212SGL.h"
 #include <windows.h>
+#include <time.h>
 #pragma comment(lib, "CC212SGL.lib")
 
 #define ROWS 6
@@ -211,6 +212,17 @@ void drawGameBoard(int gameBoard[ROWS][COLS], int xStartingBoardCoordinates, int
 }
 
 
+int generateRandomColumn(int gameBoard[ROWS][COLS]) {
+    int column;
+    time_t t;
+    srand((unsigned)time(&t));
+
+    while (getFirstFreeRow(gameBoard, column = rand() % 6) == -1);
+    return column;
+}
+
+
+
 
 int main() {
 
@@ -239,6 +251,9 @@ int main() {
     //for iterating between players
     int playersTurn = 1;
 
+    int playerChoice;
+    printf("please enter 1 or 2 for a sigleplayer or multiplayer game: ");
+    scanf("%d", &playerChoice);
 
 
     while (true) {
@@ -247,12 +262,20 @@ int main() {
 
         drawGameBoard(gameBoard, xBoard, yBoard);
 
+        int column;
+
 
 
         if (kbhit)
-        {         
+        {
             if (GetAsyncKeyState(VK_SPACE))
             {
+                
+                if (playerChoice == 1) {
+                    if (playersTurn == 2) {
+                        column = generateRandomColumn(gameBoard);
+                    }
+                }
                 if (boardNotFull(gameBoard)) {
                     if (columnExists(userInput)) {
                         if (getFirstFreeRow(gameBoard, userInput) != -1) {
