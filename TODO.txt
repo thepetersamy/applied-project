@@ -4,3 +4,4 @@ add tic tac toe graphics [working progress]
 add c4 graphics          [done]
 add undo and redo functions
 add sounds 
+ask eng nour about &current in load game
