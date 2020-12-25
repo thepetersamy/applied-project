@@ -235,8 +235,8 @@ int main() {
     int height = g.getWindowHeight();
 
     // y and x board are for calibrating the game board at the center of the screen
-    int xBoard = width / 2 - WIDTH/2;
-    int yBoard = height / 2 - HEIGHT/2;
+    int xBoard = width / 2 - WIDTH / 2;
+    int yBoard = height / 2 - HEIGHT / 2;
 
 
     int xToken = xBoard;
@@ -251,111 +251,150 @@ int main() {
     //for iterating between players
     int playersTurn = 1;
 
-    int playerChoice;
-    printf("please enter 1 or 2 for a sigleplayer or multiplayer game: ");
-    scanf("%d", &playerChoice);
+    int playerChoice = 0;
+    int singleMultiChoice = 1;
+    int gameStarted = 0; //to avoid starting after menu
+    int computerTurn = 0; //to activate computer turn
 
 
     while (true) {
 
         g.beginDraw();
 
-        drawGameBoard(gameBoard, xBoard, yBoard);
+        g.fillScreen(COLORS::WHITE);
 
         int column;
-
-
-
-        if (kbhit)
+        if (playerChoice == 0)
         {
-            if (GetAsyncKeyState(VK_SPACE))
+            g.setDrawingColor(COLORS::BLACK);
+            g.setFontSizeAndBoldness(80, 200);
+            g.drawText(210, height / 2 - 160, "Singleplayer");
+            g.drawText(210, height / 2 - 80, "Multiplayer");
+            if (kbhit)
             {
-                
-                if (playerChoice == 1) {
-                    if (playersTurn == 2) {
-                        column = generateRandomColumn(gameBoard);
-                    }
+                if (GetAsyncKeyState(VK_UP) && singleMultiChoice == 2)
+                {
+                    singleMultiChoice--;
                 }
-                if (boardNotFull(gameBoard)) {
-                    if (columnExists(userInput)) {
-                        if (getFirstFreeRow(gameBoard, userInput) != -1) {
+                else if (GetAsyncKeyState(VK_DOWN) && singleMultiChoice == 1)
+                {
+                    singleMultiChoice++;
+                }
+                else if (GetAsyncKeyState(VK_SPACE))
+                {
+                    playerChoice = singleMultiChoice;
+                }
+            }
+            g.drawRectangle(200, height / 2 - (160 / singleMultiChoice), 600, 80);
 
-                            int row = getFirstFreeRow(gameBoard, userInput);
+            g.endDraw();
+        }
+        else {
+            drawGameBoard(gameBoard, xBoard, yBoard);
+            if ((kbhit && gameStarted == 1) || computerTurn == 1)
+            {
+                if (GetAsyncKeyState(VK_SPACE) || computerTurn == 1)
+                {
 
-                            gameBoard[row][userInput] = playersTurn;
+                    if (playerChoice == 1) {
+                        if (playersTurn == 2) {
+                            computerTurn = 0;
+                            column = generateRandomColumn(gameBoard);
 
-                            if (playerWonHorizontally(gameBoard, playersTurn) || playerWonVertically(gameBoard, playersTurn) || playerWonDiagonally(gameBoard, playersTurn)) {
-                                drawGameBoard(gameBoard, xBoard, yBoard);
+                        }
+                        else if (playersTurn == 1) {
+                            column = userInput;
+                            computerTurn = 1;
+                        }
+                    }
+                    else if (playerChoice == 2)
+                        column = userInput;
 
+                    if (boardNotFull(gameBoard)) {
+                        if (columnExists(column)) {
+                            if (getFirstFreeRow(gameBoard, column) != -1) {
+
+                                int row = getFirstFreeRow(gameBoard, column);
+
+                                gameBoard[row][column] = playersTurn;
+
+                                if (playerWonHorizontally(gameBoard, playersTurn) || playerWonVertically(gameBoard, playersTurn) || playerWonDiagonally(gameBoard, playersTurn)) {
+                                    drawGameBoard(gameBoard, xBoard, yBoard);
+
+                                    g.setDrawingColor(COLORS::LIME);
+                                    g.drawSolidRectangle(width / 2 - 280, height / 2 - 80, 510, 80);
+                                    g.setDrawingColor(COLORS::BLACK);
+                                    g.setFontSizeAndBoldness(80, 200);
+                                    char tmp[50];
+                                    sprintf(tmp, "Player %d WON!!!", playersTurn);
+                                    g.drawText(width / 2 - 280, height / 2 - 80, tmp);
+                                    g.endDraw();
+
+                                    gameNotOver = 0;
+                                    break;
+                                }
+
+
+                            }
+                            else {
                                 g.setDrawingColor(COLORS::LIME);
-                                g.drawSolidRectangle(width / 2 - 280, height / 2 - 80, 510, 80);
+                                g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
                                 g.setDrawingColor(COLORS::BLACK);
                                 g.setFontSizeAndBoldness(80, 200);
-                                char tmp[50];
-                                sprintf(tmp,"Player %d WON!!!", playersTurn);
-                                g.drawText(width/2-280, height / 2-80,tmp);
+                                g.drawText(width / 2 - 550, height / 2 - 80, "Please choose another one, column is full");
                                 g.endDraw();
-                                
-                                gameNotOver = 0;
-                                break;
+                                Sleep(1500);
+                                continue;
                             }
-
 
                         }
                         else {
-                            g.setDrawingColor(COLORS::LIME);
-                            g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
-                            g.setDrawingColor(COLORS::BLACK);
-                            g.setFontSizeAndBoldness(80, 200);
-                            g.drawText(width / 2 - 550, height / 2 - 80, "Please choose another one, column is full");
-                            g.endDraw();
-                            Sleep(1500);
+                            printf("column doesn't exist, please choose anther one\n");
                             continue;
                         }
 
                     }
                     else {
-                        printf("column doesn't exist, please choose anther one\n");
-                        continue;
+                        printf("It's a tie, no one wins\n");
+                        drawGameBoard(gameBoard, xBoard, yBoard);
+                        g.endDraw();
+                        break;
                     }
 
+                    // switching player every turn
+                    playersTurn = switchPlayer(playersTurn);
+
                 }
-                else {
-                    printf("It's a tie, no one wins\n");
-                    drawGameBoard(gameBoard, xBoard, yBoard);
-                    g.endDraw();
+                else if (GetAsyncKeyState(VK_RIGHT) && xToken < xBoard + HEIGHT)
+                {
+                    xToken += 100;
+                    userInput++;
+                }
+                else if (GetAsyncKeyState(VK_LEFT) && xToken > xBoard)
+                {
+                    xToken -= 100;
+                    userInput--;
+                }
+
+                else if (GetAsyncKeyState(27))
                     break;
-                }
-
-                // switching player every turn
-                playersTurn = switchPlayer(playersTurn);
-
             }
-            else if (GetAsyncKeyState(VK_RIGHT) && xToken < xBoard + HEIGHT)
-            {
-                xToken += 100;
-                userInput++;
-            }
-            else if (GetAsyncKeyState(VK_LEFT) && xToken > xBoard)
-            {
-                xToken -= 100;
-                userInput--;
-            }
+            gameStarted = 1;
 
-            else if (GetAsyncKeyState(27))
-                break;
+
+            if (playersTurn == 1)
+                g.setDrawingColor(COLORS::YELLOW);
+            else if (playersTurn == 2)
+                g.setDrawingColor(COLORS::RED);
+            g.drawSolidCircle(xToken, yToken, 90);
+
+
+            //printf("%d", userInput);//test
+            Sleep(150);
+            g.endDraw();
+
         }
-        if(playersTurn == 1)
-            g.setDrawingColor(COLORS::YELLOW);
-        else if(playersTurn == 2)
-            g.setDrawingColor(COLORS::RED);
-        g.drawSolidCircle(xToken, yToken, 90);
 
-
-        //printf("%d", userInput);//test
-
-        Sleep(150);
-        g.endDraw();
     }
     getch();
 
