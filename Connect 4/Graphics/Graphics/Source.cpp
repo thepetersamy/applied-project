@@ -141,13 +141,13 @@ bool playerWonDiagonally(int gameBoard[ROWS][COLS], int playersTurn) {
 }
 void saveGame(int gameBoard[ROWS][COLS], const char* fileName, int playersTurn) {
 
-    FILE* file = fopen(fileName, "w+");
+    FILE* file = fopen(fileName, "wb+");
 
 
     // writing gameboard to file
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
-            char current[10];
+            char current[2];
             sprintf(current, "%d", gameBoard[i][j]);
             fputs(current, file);
         }
@@ -176,7 +176,7 @@ bool fileExists(const char* fileName){
 // load game function returns game board as an arg and returns the playersTurn noramally
 int loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
 
-    FILE* file = fopen(fileName, "r");
+    FILE* file = fopen(fileName, "rb");
     int current;
     int arr[ROWS * COLS + 1];
     int x = 0;
@@ -418,11 +418,25 @@ int main() {
                 else if (GetAsyncKeyState('S'))
                 {
                     saveGame(gameBoard, "c4", playersTurn);
+                    g.setDrawingColor(COLORS::LIME);
+                    g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
+                    g.setDrawingColor(COLORS::BLACK);
+                    g.setFontSizeAndBoldness(80, 200);
+                    g.drawText(width / 2 - 550, height / 2 - 80, "Game saved successfully!");
+                    g.endDraw();
+                    Sleep(1500);
                 }
                 else if (GetAsyncKeyState('L'))
                 {
                     if (fileExists("c4")) {
                         playersTurn = loadGame(gameBoard, "c4");
+                        g.setDrawingColor(COLORS::LIME);
+                        g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
+                        g.setDrawingColor(COLORS::BLACK);
+                        g.setFontSizeAndBoldness(80, 200);
+                        g.drawText(width / 2 - 550, height / 2 - 80, "Game loaded successfully!");
+                        g.endDraw();
+                        Sleep(1500);
                     }
                     else {
                         g.setDrawingColor(COLORS::LIME);
