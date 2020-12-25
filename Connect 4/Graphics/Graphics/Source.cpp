@@ -266,8 +266,11 @@ int main() {
         int column;
         if (playerChoice == 0)
         {
-            g.setDrawingColor(COLORS::BLACK);
+            g.setDrawingColor(COLORS::BLUE);
             g.setFontSizeAndBoldness(80, 200);
+            g.drawText(210, height/2-280, "Connect 4");
+
+            g.setDrawingColor(COLORS::BLACK);
             g.drawText(210, height / 2 - 160, "Singleplayer");
             g.drawText(210, height / 2 - 80, "Multiplayer");
             if (kbhit)
