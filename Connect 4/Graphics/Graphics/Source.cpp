@@ -144,7 +144,7 @@ void saveGame(int gameBoard[ROWS][COLS], const char* fileName, int playersTurn) 
     FILE* file = fopen(fileName, "w+");
 
 
-
+    // writing gameboard to file
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             char current[10];
@@ -152,6 +152,7 @@ void saveGame(int gameBoard[ROWS][COLS], const char* fileName, int playersTurn) 
             fputs(current, file);
         }
     }
+    //writing playersTurn to file
     char turn[2];
     sprintf(turn, "%d", playersTurn);
     fputs(turn, file);
@@ -162,6 +163,17 @@ void saveGame(int gameBoard[ROWS][COLS], const char* fileName, int playersTurn) 
 
 }
 
+
+bool fileExists(const char* fileName){
+    FILE* file;
+    if ((file = fopen(fileName, "r"))){
+        fclose(file);
+        return 1;
+    }
+    return 0;
+}
+
+// load game function returns game board as an arg and returns the playersTurn noramally
 int loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
 
     FILE* file = fopen(fileName, "r");
@@ -170,6 +182,8 @@ int loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
     int x = 0;
     int playersTurn;
 
+    // reading gameboard into a 1D array
+    // the +1 is for the palayersTurn
     for (int i = 0; i < ROWS * COLS + 1; i++) {
         fscanf(file, "%c", &current);
         arr[i] = current;
@@ -190,6 +204,8 @@ int loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
     printf("playersTurn::%d\n", playersTurn);
 
     return playersTurn;
+    
+    
 }
 
 void drawGameBoard(int gameBoard[ROWS][COLS], int xStartingBoardCoordinates, int yStartingBoardCoordinates) {
@@ -362,7 +378,7 @@ int main() {
                                 continue;
                             }
 
-                        }
+                        }// merged from terminal based game but has no use here
                         else {
                             printf("column doesn't exist, please choose anther one\n");
 
@@ -401,11 +417,22 @@ int main() {
                 }
                 else if (GetAsyncKeyState('S'))
                 {
-                    saveGame(gameBoard, "c4.txt", playersTurn);
+                    saveGame(gameBoard, "c4", playersTurn);
                 }
                 else if (GetAsyncKeyState('L'))
                 {
-                    playersTurn = loadGame(gameBoard, "c4.txt");
+                    if (fileExists("c4")) {
+                        playersTurn = loadGame(gameBoard, "c4");
+                    }
+                    else {
+                        g.setDrawingColor(COLORS::LIME);
+                        g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
+                        g.setDrawingColor(COLORS::BLACK);
+                        g.setFontSizeAndBoldness(80, 200);
+                        g.drawText(width / 2 - 550, height / 2 - 80, "There are no saved games!");
+                        g.endDraw();
+                        Sleep(1500);
+                    }
                 }
             }
             gameStarted = 1;
