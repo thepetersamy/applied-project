@@ -58,15 +58,15 @@ int switchPlayer(int playersTurn) {
     return playersTurn == 1 ? 2 : 1;
 }
 // checking if the board is full, hence a tie
-bool boardNotFull(int gameBoard[ROWS][COLS]) {
+bool isBoardFull(int gameBoard[ROWS][COLS]) {
 
     for (int i = 0; i < ROWS; i++) {
-        for (int j = 0; i < COLS; j++) {
+        for (int j = 0; j < COLS; j++) {
             if (gameBoard[i][j] == 0)
-                return 1;
+                return 0;
         }
     }
-    return 0;
+    return 1;
 }
 // implement with counter and break when counter == 4
 bool playerWonHorizontally(int gameBoard[ROWS][COLS], int playersturn) {
@@ -139,33 +139,52 @@ bool playerWonDiagonally(int gameBoard[ROWS][COLS], int playersTurn) {
     }
     return 0;
 }
-void saveGame(int gameBoard[ROWS][COLS], const char* fileName) {
+void saveGame(int gameBoard[ROWS][COLS], const char* fileName, int playersTurn) {
 
-    FILE* file = fopen(fileName, "w+");
+    FILE* file = fopen(fileName, "wb+");
 
 
-
+    // writing gameboard to file
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
-            char current[10];
+            char current[2];
             sprintf(current, "%d", gameBoard[i][j]);
             fputs(current, file);
         }
     }
+    //writing playersTurn to file
+    char turn[2];
+    sprintf(turn, "%d", playersTurn);
+    fputs(turn, file);
+
     printf("[Game Saved]");
 
     fclose(file);
 
 }
-void loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
 
-    FILE* file = fopen(fileName, "r");
+
+bool fileExists(const char* fileName){
+    FILE* file;
+    if ((file = fopen(fileName, "r"))){
+        fclose(file);
+        return 1;
+    }
+    return 0;
+}
+
+// load game function returns game board as an arg and returns the playersTurn noramally
+int loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
+
+    FILE* file = fopen(fileName, "rb");
     int current;
-    int arr[ROWS * COLS];
+    int arr[ROWS * COLS + 1];
     int x = 0;
+    int playersTurn;
 
-
-    for (int i = 0; i < ROWS * COLS; i++) {
+    // reading gameboard into a 1D array
+    // the +1 is for the palayersTurn
+    for (int i = 0; i < ROWS * COLS + 1; i++) {
         fscanf(file, "%c", &current);
         arr[i] = current;
     }
@@ -176,10 +195,18 @@ void loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
             gameBoard[i][j] = char(arr[x++] - '0');
         }
     }
-    fclose(file);
-    printf("[Game Loaded]");
-}
 
+    fscanf(file, "%c", &current);
+    playersTurn = char(current - '0');
+
+    fclose(file);
+    printf("[Game Loaded]\n");
+    printf("playersTurn::%d\n", playersTurn);
+
+    return playersTurn;
+    
+    
+}
 
 void drawGameBoard(int gameBoard[ROWS][COLS], int xStartingBoardCoordinates, int yStartingBoardCoordinates) {
     //setting color of background
@@ -273,7 +300,7 @@ int main() {
             g.setDrawingColor(COLORS::BLACK);
             g.drawText(210, height / 2 - 160, "Singleplayer");
             g.drawText(210, height / 2 - 80, "Multiplayer");
-            if (kbhit)
+            if (kbhit())
             {
                 if (GetAsyncKeyState(VK_UP) && singleMultiChoice == 2)
                 {
@@ -294,7 +321,8 @@ int main() {
         }
         else {
             drawGameBoard(gameBoard, xBoard, yBoard);
-            if ((kbhit && gameStarted == 1) || computerTurn == 1)
+
+            if ((kbhit() && gameStarted == 1) || computerTurn == 1)
             {
                 if (GetAsyncKeyState(VK_SPACE) || computerTurn == 1)
                 {
@@ -313,7 +341,7 @@ int main() {
                     else if (playerChoice == 2)
                         column = userInput;
 
-                    if (boardNotFull(gameBoard)) {
+                    if (!isBoardFull(gameBoard)) {
                         if (columnExists(column)) {
                             if (getFirstFreeRow(gameBoard, column) != -1) {
 
@@ -350,17 +378,22 @@ int main() {
                                 continue;
                             }
 
-                        }
+                        }// merged from terminal based game but has no use here
                         else {
                             printf("column doesn't exist, please choose anther one\n");
+
                             continue;
                         }
 
                     }
                     else {
-                        printf("It's a tie, no one wins\n");
-                        drawGameBoard(gameBoard, xBoard, yBoard);
+                        g.setDrawingColor(COLORS::LIME);
+                        g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
+                        g.setDrawingColor(COLORS::BLACK);
+                        g.setFontSizeAndBoldness(80, 200);
+                        g.drawText(width / 2 - 550, height / 2 - 80, "It's a tie, no one wins");
                         g.endDraw();
+                        Sleep(1500);
                         break;
                     }
 
@@ -379,8 +412,42 @@ int main() {
                     userInput--;
                 }
 
-                else if (GetAsyncKeyState(27))
+                else if (GetAsyncKeyState(27)) {
                     break;
+                }
+                else if (GetAsyncKeyState('S'))
+                {
+                    saveGame(gameBoard, "c4", playersTurn);
+                    g.setDrawingColor(COLORS::LIME);
+                    g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
+                    g.setDrawingColor(COLORS::BLACK);
+                    g.setFontSizeAndBoldness(80, 200);
+                    g.drawText(width / 2 - 550, height / 2 - 80, "Game saved successfully!");
+                    g.endDraw();
+                    Sleep(1500);
+                }
+                else if (GetAsyncKeyState('L'))
+                {
+                    if (fileExists("c4")) {
+                        playersTurn = loadGame(gameBoard, "c4");
+                        g.setDrawingColor(COLORS::LIME);
+                        g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
+                        g.setDrawingColor(COLORS::BLACK);
+                        g.setFontSizeAndBoldness(80, 200);
+                        g.drawText(width / 2 - 550, height / 2 - 80, "Game loaded successfully!");
+                        g.endDraw();
+                        Sleep(1500);
+                    }
+                    else {
+                        g.setDrawingColor(COLORS::LIME);
+                        g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
+                        g.setDrawingColor(COLORS::BLACK);
+                        g.setFontSizeAndBoldness(80, 200);
+                        g.drawText(width / 2 - 550, height / 2 - 80, "There are no saved games!");
+                        g.endDraw();
+                        Sleep(1500);
+                    }
+                }
             }
             gameStarted = 1;
 
@@ -399,6 +466,7 @@ int main() {
         }
 
     }
+
     getch();
 
     return 0;

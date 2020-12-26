@@ -1,6 +1,7 @@
-add save and load game
-develop tic tac toe bot
-add tic tac toe graphics
-add c4 graphics
+add save and load game   [done]
+develop tic tac toe bot  [done]
+add tic tac toe graphics [working progress]
+add c4 graphics          [done]
 add undo and redo functions
 add sounds 
+ask eng nour about &current in load game
