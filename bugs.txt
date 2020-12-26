@@ -1,0 +1,4 @@
+gameBoardFull function not working[done]
+
+change load and save game functions from upper s and upper l as it conflicts with 
+the graphics library
