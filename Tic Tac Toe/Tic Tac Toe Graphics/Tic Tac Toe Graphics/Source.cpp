@@ -235,7 +235,6 @@ void generateRandomCordinates(int gameBoard[SIZE][SIZE], int* x, int* y) {
 	//printf("%d\n", rand() % 3);
 
 	while (isOccupied(gameBoard, *x = rand() % 3, *y = rand() % 3));
-	printf("(%d,%d)", *x, *y);
 }
 
 //void onePlayerGame(int gameBoard[SIZE][SIZE]) {
@@ -368,124 +367,199 @@ int main()
 	int shape[2];//X & O
 	shape[0] = g.loadImage("x.png");
 	shape[1] = g.loadImage("o.png");
-	int playerChoice;
+	int playerChoice=0;
 	int gameNotOver = 1;
 
 	int playersTurn = 1;
+	int singleMultiChoice = 1;
+	int gameStarted = 0; //to avoid starting after menu
+	int computerTurn = 0; //to activate computer turn
 
 	createGameBoard(gameBoard);
-
-	printf("please enter 1 or 2 for a sigleplayer or multiplayer game: ");
-	scanf("%d", &playerChoice);
 
 	while (true)
 	{
 		g.beginDraw();
+		if (playerChoice == 0)
+		{
+			g.setDrawingColor(COLORS::BLUE);
+			g.setFontSizeAndBoldness(80, 200);
+			g.drawText(210, screenHeight / 2 - 280, "Connect 4");
 
-		drawTicTacToe(gameBoard, xBoard, yBoard, shape);
+			g.setDrawingColor(COLORS::WHITE);
+			g.drawText(210, screenHeight / 2 - 160, "Singleplayer");
+			g.drawText(210, screenHeight / 2 - 80, "Multiplayer");
+			if (kbhit())
+			{
+				if (GetAsyncKeyState(VK_UP) && singleMultiChoice == 2)
+				{
+					singleMultiChoice--;
+				}
+				else if (GetAsyncKeyState(VK_DOWN) && singleMultiChoice == 1)
+				{
+					singleMultiChoice++;
+				}
+				else if (GetAsyncKeyState(VK_SPACE))
+				{
+					playerChoice = singleMultiChoice;
+				}
+			}
+			g.drawRectangle(200, screenHeight / 2 - (160 / singleMultiChoice), 600, 80);
 
-		if (kbhit) {
-			if (GetAsyncKeyState(VK_SPACE)) {
-				bool played = 0;
+			g.endDraw();
+		}
+		else {
 
-				int x, y;
+			drawTicTacToe(gameBoard, xBoard, yBoard, shape);
 
-				// user input for column
-				printf("**PLAYER %d**\n", playersTurn);
+			if ((kbhit && gameStarted == 1) || computerTurn == 1) {
+				if (GetAsyncKeyState(VK_SPACE) || computerTurn == 1) {
+					bool played = 0;
 
+					int x, y;
 
-				if (playerChoice == 2) {
 					// user input for column
-					x = xUserInput;
-					y = yUserInput;
-				}
-				else if (playerChoice == 1) {
-					if (playersTurn == 1) {
-						printf("plaese enter the (x,y) coordinates you wish to place the token in:");
-						scanf("%d%d", &x, &y);
-						printf("\n\n");
+
+
+					if (playerChoice == 2) {
+						// user input for column
+						x = xUserInput;
+						y = yUserInput;
 					}
-					else if (playersTurn == 2) {
-						generateRandomCordinates(gameBoard, &x, &y);
-						printf("computer played at (%d,%d)\n\n", x, y);
+					else if (playerChoice == 1) {
+						if (playersTurn == 1) {
+							computerTurn = 1;
+
+							x = xUserInput;
+							y = yUserInput;
+						}
+						else if (playersTurn == 2) {
+							generateRandomCordinates(gameBoard, &x, &y);
+							computerTurn = 0;
+						}
 					}
-				}
 
 
 
-				if (isBoardFull) {
-					if (coordinatesExist(x, y)) {
+					if (isBoardFull) {
+						if (coordinatesExist(x, y)) {
 
-						if (!isOccupied(gameBoard, x, y)) {
+							if (!isOccupied(gameBoard, x, y)) {
 
-							placeToken(gameBoard, playersTurn, x, y);
-							if (playerWonVertically(gameBoard, playersTurn) || playerWonHorizontally(gameBoard, playersTurn) || playerWondiagonally(gameBoard, playersTurn)) {
-								if (playerChoice == 1) {
-									if (playersTurn == 1) {
-										printf("YOU WIN!!!");
+								placeToken(gameBoard, playersTurn, x, y);
+								if (playerWonVertically(gameBoard, playersTurn) || playerWonHorizontally(gameBoard, playersTurn) || playerWondiagonally(gameBoard, playersTurn)) {
+									if (playerChoice == 1) {
+										if (playersTurn == 1) {
+											drawTicTacToe(gameBoard, xBoard, yBoard, shape);
+
+											g.setDrawingColor(COLORS::LIME);
+											g.drawSolidRectangle(screenWidth / 2 - 280, screenHeight / 2 - 80, 510, 80);
+											g.setDrawingColor(COLORS::BLACK);
+											g.setFontSizeAndBoldness(80, 200);
+											g.drawText(screenWidth / 2 - 280, screenHeight / 2 - 80, "YOU WON!!!");
+											g.endDraw();
+
+										}
+										else if (playersTurn == 2) {
+											drawTicTacToe(gameBoard, xBoard, yBoard, shape);
+
+											g.setDrawingColor(COLORS::LIME);
+											g.drawSolidRectangle(screenWidth / 2 - 280, screenHeight / 2 - 80, 510, 80);
+											g.setDrawingColor(COLORS::BLACK);
+											g.setFontSizeAndBoldness(80, 200);
+											g.drawText(screenWidth / 2 - 280, screenHeight / 2 - 80, "YOU LOSE!!!");
+											g.endDraw();
+										}
 									}
-									else if (playersTurn == 2) {
-										printf("YOU LOSE!!!");
+									else if (playerChoice == 2) {
+										drawTicTacToe(gameBoard, xBoard, yBoard, shape);
+
+										g.setDrawingColor(COLORS::LIME);
+										g.drawSolidRectangle(screenWidth / 2 - 280, screenHeight / 2 - 80, 510, 80);
+										g.setDrawingColor(COLORS::BLACK);
+										g.setFontSizeAndBoldness(80, 200);
+										char tmp[50];
+										sprintf(tmp, "Player %d WON!!!", playersTurn);
+										g.drawText(screenWidth / 2 - 280, screenHeight / 2 - 80, tmp);
+										g.endDraw();
+
 									}
+									break;
 								}
-								else if (playerChoice == 2) {
-									printf("player %d WON!!!\n", playersTurn);
-								}
-								break;
+
+
+
+
 							}
+							else {
+								g.setDrawingColor(COLORS::LIME);
+								g.drawSolidRectangle(screenWidth / 2 - 550, screenHeight / 2 - 80, 1410, 80);
+								g.setDrawingColor(COLORS::BLACK);
+								g.setFontSizeAndBoldness(80, 200);
+								g.drawText(screenWidth / 2 - 550, screenHeight / 2 - 80, "block is occuipied please choose another one");
+								g.endDraw();
+								Sleep(1500);
 
-
-
-
+								continue;
+							}
 						}
 						else {
-							printf("block is occuipied please choose another one\n");
+							g.setDrawingColor(COLORS::LIME);
+							g.drawSolidRectangle(screenWidth / 2 - 550, screenHeight / 2 - 80, 1300, 80);
+							g.setDrawingColor(COLORS::BLACK);
+							g.setFontSizeAndBoldness(80, 200);
+							g.drawText(screenWidth / 2 - 550, screenHeight / 2 - 80, "coordinates you entered does not exist");
+							g.endDraw();
+							Sleep(1500);
 							continue;
 						}
 					}
 					else {
-						printf("coordinates you entered does not exist\n");
-						continue;
+						g.setDrawingColor(COLORS::LIME);
+						g.drawSolidRectangle(screenWidth / 2 - 550, screenHeight / 2 - 80, 1300, 80);
+						g.setDrawingColor(COLORS::BLACK);
+						g.setFontSizeAndBoldness(80, 200);
+						g.drawText(screenWidth / 2 - 550, screenHeight / 2 - 80, "board is full, its a tie!");
+						g.endDraw();
+						Sleep(1500);
+
+						gameNotOver = 0;
+						break;
 					}
+					playersTurn = switchPlayer(playersTurn);
 				}
-				else {
-					printf("board is full, its a tie!\n");
-					gameNotOver = 0;
+
+
+				else if (GetAsyncKeyState(VK_RIGHT) && xC < xBoard + SIDE - 200)
+				{
+					xC += 200;
+					xUserInput++;
+				}
+				else if (GetAsyncKeyState(VK_LEFT) && xC > xBoard)
+				{
+					xC -= 200;
+					xUserInput--;
+				}
+				else if (GetAsyncKeyState(VK_DOWN) && yC < yBoard + SIDE - 200)
+				{
+					yC += 200;
+					yUserInput++;
+				}
+				else if (GetAsyncKeyState(VK_UP) && yC > yBoard)
+				{
+					yC -= 200;
+					yUserInput--;
+				}
+				else if (GetAsyncKeyState(27))
 					break;
-				}
-				playersTurn = switchPlayer(playersTurn);
 			}
+			g.setDrawingColor(COLORS::RED);
+			g.setDrawingThickness(5);
+			g.drawRectangle(xC, yC, 190, 190);
 
-
-			else if (GetAsyncKeyState(VK_RIGHT) && xC < xBoard + SIDE - 200)
-			{
-				xC += 200;
-				xUserInput++;
-			}
-			else if (GetAsyncKeyState(VK_LEFT) && xC > xBoard)
-			{
-				xC -= 200;
-				xUserInput--;
-			}
-			else if (GetAsyncKeyState(VK_DOWN) && yC < yBoard + SIDE - 200)
-			{
-				yC += 200;
-				yUserInput++;
-			}
-			else if (GetAsyncKeyState(VK_UP) && yC > yBoard)
-			{
-				yC -= 200;
-				yUserInput--;
-			}
-			else if (GetAsyncKeyState(27))
-				break;
+			gameStarted = 1;
+			g.endDraw();
+			Sleep(150);
 		}
-		g.setDrawingColor(COLORS::RED);
-		g.setDrawingThickness(5);
-		g.drawRectangle(xC, yC, 190,190);
-		
-
-		g.endDraw();
-		Sleep(150);
 	}
 }

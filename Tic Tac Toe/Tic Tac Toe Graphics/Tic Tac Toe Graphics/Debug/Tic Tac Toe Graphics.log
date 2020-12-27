@@ -1,1 +1,10 @@
-﻿  Tic Tac Toe Graphics.vcxproj -> D:\Chess\chess-game\Tic Tac Toe\Tic Tac Toe Graphics\Debug\Tic Tac Toe Graphics.exe
+﻿  Source.cpp
+D:\Chess\chess-game\Tic Tac Toe\Tic Tac Toe Graphics\Tic Tac Toe Graphics\CC212SGL.h(28,2): warning C4091: '__declspec(dllimport)': ignored on left of 'COLORS' when no variable is declared
+D:\Chess\chess-game\Tic Tac Toe\Tic Tac Toe Graphics\Tic Tac Toe Graphics\Source.cpp(147,7): warning C4551: function call missing argument list
+D:\Chess\chess-game\Tic Tac Toe\Tic Tac Toe Graphics\Tic Tac Toe Graphics\Source.cpp(143,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Chess\chess-game\Tic Tac Toe\Tic Tac Toe Graphics\Tic Tac Toe Graphics\Source.cpp(415,7): warning C4551: function call missing argument list
+D:\Chess\chess-game\Tic Tac Toe\Tic Tac Toe Graphics\Tic Tac Toe Graphics\Source.cpp(444,10): warning C4551: function call missing argument list
+D:\Chess\chess-game\Tic Tac Toe\Tic Tac Toe Graphics\Tic Tac Toe Graphics\Source.cpp(392,8): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _kbhit. See online help for details.
+D:\Chess\chess-game\Tic Tac Toe\Tic Tac Toe Graphics\Tic Tac Toe Graphics\Source.cpp(415,9): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _kbhit. See online help for details.
+D:\Chess\chess-game\Tic Tac Toe\Tic Tac Toe Graphics\Tic Tac Toe Graphics\Source.cpp(482,11): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Tic Tac Toe Graphics.vcxproj -> D:\Chess\chess-game\Tic Tac Toe\Tic Tac Toe Graphics\Debug\Tic Tac Toe Graphics.exe
