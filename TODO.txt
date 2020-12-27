@@ -10,3 +10,4 @@ turn message boxes into functions
 merge games
 fix loading and saving game to work with ctrl l & s
 change x o pics (preferably)(ask 3sam)
+render instead of sleep
