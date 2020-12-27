@@ -1,1 +1,8 @@
-
+.vs
+Debug
+*.sln
+x64
+x32
+x86
+*.dll
+.lib

@@ -164,9 +164,9 @@ void saveGame(int gameBoard[ROWS][COLS], const char* fileName, int playersTurn) 
 }
 
 
-bool fileExists(const char* fileName){
+bool fileExists(const char* fileName) {
     FILE* file;
-    if ((file = fopen(fileName, "r"))){
+    if ((file = fopen(fileName, "r"))) {
         fclose(file);
         return 1;
     }
@@ -204,8 +204,8 @@ int loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
     printf("playersTurn::%d\n", playersTurn);
 
     return playersTurn;
-    
-    
+
+
 }
 
 void drawGameBoard(int gameBoard[ROWS][COLS], int xStartingBoardCoordinates, int yStartingBoardCoordinates) {
@@ -295,7 +295,7 @@ int main() {
         {
             g.setDrawingColor(COLORS::BLUE);
             g.setFontSizeAndBoldness(80, 200);
-            g.drawText(210, height/2-280, "Connect 4");
+            g.drawText(210, height / 2 - 280, "Connect 4");
 
             g.setDrawingColor(COLORS::BLACK);
             g.drawText(210, height / 2 - 160, "Singleplayer");
@@ -375,7 +375,6 @@ int main() {
                                 g.drawText(width / 2 - 550, height / 2 - 80, "Please choose another one, column is full");
                                 g.endDraw();
                                 Sleep(1500);
-                                computerTurn = 0;
                                 continue;
                             }
 
@@ -467,9 +466,8 @@ int main() {
         }
 
     }
-
+    Sleep(2000);
     getch();
 
     return 0;
 }
-
