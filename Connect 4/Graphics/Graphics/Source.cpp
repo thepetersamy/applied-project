@@ -375,6 +375,7 @@ int main() {
                                 g.drawText(width / 2 - 550, height / 2 - 80, "Please choose another one, column is full");
                                 g.endDraw();
                                 Sleep(1500);
+                                computerTurn = 0;
                                 continue;
                             }
 
