@@ -52,11 +52,13 @@ int getFirstFreeRow(int gameBoard[ROWS][COLS], int column) {
     }
     return -1;
 }
+
 // function to switch player
 int switchPlayer(int playersTurn) {
 
     return playersTurn == 1 ? 2 : 1;
 }
+
 // checking if the board is full, hence a tie
 bool isBoardFull(int gameBoard[ROWS][COLS]) {
 
@@ -68,6 +70,7 @@ bool isBoardFull(int gameBoard[ROWS][COLS]) {
     }
     return 1;
 }
+
 // implement with counter and break when counter == 4
 bool playerWonHorizontally(int gameBoard[ROWS][COLS], int playersturn) {
 
@@ -95,6 +98,7 @@ bool playerWonHorizontally(int gameBoard[ROWS][COLS], int playersturn) {
     }
     return 0;
 }
+
 bool playerWonVertically(int gameBoard[ROWS][COLS], int playersturn) {
     // counter to check if 4 tokens of the same player in a column
     int counter = 0;
@@ -139,6 +143,7 @@ bool playerWonDiagonally(int gameBoard[ROWS][COLS], int playersTurn) {
     }
     return 0;
 }
+
 void saveGame(int gameBoard[ROWS][COLS], const char* fileName, int playersTurn) {
 
     FILE* file = fopen(fileName, "wb+");

@@ -39,7 +39,7 @@ void placeToken(int gameBoard[SIZE][SIZE], int playersTurn, int x, int y) {
 	gameBoard[x][y] = playersTurn;
 }
 
-<<<<<<< HEAD
+
 bool isBoardFull(int gameBoard[SIZE][SIZE]) {
 	for (int i = 0; i < SIZE; i++) {
 		for (int j = 0; j < SIZE; j++) {
@@ -48,7 +48,7 @@ bool isBoardFull(int gameBoard[SIZE][SIZE]) {
 		}
 	}
 	return 1;
-=======
+
 bool isBoardFull(int gameBoard[SIZE][SIZE], int playersTurn, int x, int y) {
 	for (int i = 0; i < SIZE; i++) {
 		for (int j = 0; i < SIZE; j++) {
