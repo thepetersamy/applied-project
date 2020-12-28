@@ -1,4 +1,5 @@
 ﻿  Source.cpp
+<<<<<<< HEAD
 C:\Users\Peter\Desktop\chess\repo\New folder\chess-game\Connect 4\Graphics\Graphics\CC212SGL.h(28,2): warning C4091: '__declspec(dllimport)': ignored on left of 'COLORS' when no variable is declared
 C:\Users\Peter\Desktop\chess\repo\New folder\chess-game\Connect 4\Graphics\Graphics\Source.cpp(149,18): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Users\Peter\Desktop\chess\repo\New folder\chess-game\Connect 4\Graphics\Graphics\Source.cpp(156,13): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
@@ -14,3 +15,20 @@ C:\Users\Peter\Desktop\chess\repo\New folder\chess-game\Connect 4\Graphics\Graph
 C:\Users\Peter\Desktop\chess\repo\New folder\chess-game\Connect 4\Graphics\Graphics\Source.cpp(365,37): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Users\Peter\Desktop\chess\repo\New folder\chess-game\Connect 4\Graphics\Graphics\Source.cpp(475,5): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
   Graphics.vcxproj -> C:\Users\Peter\Desktop\chess\repo\New folder\chess-game\Connect 4\Graphics\Debug\Graphics.exe
+=======
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\CC212SGL.h(28,2): warning C4091: '__declspec(dllimport)': ignored on left of 'COLORS' when no variable is declared
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(144,18): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(151,13): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(157,5): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(169,17): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(188,22): warning C4477: 'fscanf' : format string '%c' requires an argument of type 'char *', but variadic argument 1 has type 'int *'
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(199,18): warning C4477: 'fscanf' : format string '%c' requires an argument of type 'char *', but variadic argument 1 has type 'int *'
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(179,18): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(188,9): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(199,5): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(310,17): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _kbhit. See online help for details.
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(332,18): warning C4996: 'kbhit': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _kbhit. See online help for details.
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(363,37): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Chess\chess-game\Connect 4\Graphics\Graphics\Source.cpp(445,5): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+  Graphics.vcxproj -> D:\Chess\chess-game\Connect 4\Graphics\Debug\Graphics.exe
+>>>>>>> 71b366e1d531ac1813b9e3dba7ab70d6df46edf9

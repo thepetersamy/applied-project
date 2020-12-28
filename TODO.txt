@@ -11,3 +11,4 @@ merge games
 fix loading and saving game to work with ctrl l & s
 change x o pics (preferably)(ask 3sam)
 render instead of sleep
+add exceptions to save game and load game (to make game uncrashable)

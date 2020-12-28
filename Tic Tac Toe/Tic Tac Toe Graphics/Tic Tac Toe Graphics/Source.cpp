@@ -39,6 +39,7 @@ void placeToken(int gameBoard[SIZE][SIZE], int playersTurn, int x, int y) {
 	gameBoard[x][y] = playersTurn;
 }
 
+<<<<<<< HEAD
 
 bool isBoardFull(int gameBoard[SIZE][SIZE]) {
 	for (int i = 0; i < SIZE; i++) {
@@ -50,14 +51,21 @@ bool isBoardFull(int gameBoard[SIZE][SIZE]) {
 	return 1;
 
 bool isBoardFull(int gameBoard[SIZE][SIZE], int playersTurn, int x, int y) {
+=======
+bool isBoardFull(int gameBoard[SIZE][SIZE]) {
+>>>>>>> 71b366e1d531ac1813b9e3dba7ab70d6df46edf9
 	for (int i = 0; i < SIZE; i++) {
-		for (int j = 0; i < SIZE; j++) {
+		for (int j = 0; j < SIZE; j++) {
 			if (gameBoard[i][j] == 0)
-				return 1;
+				return 0;
 		}
 	}
+<<<<<<< HEAD
 	return 0;
 >>>>>>> 20cc8fe5fddc419d74ffc95b94ba14937b9c3845
+=======
+	return 1;
+>>>>>>> 71b366e1d531ac1813b9e3dba7ab70d6df46edf9
 }
 
 
@@ -135,6 +143,9 @@ bool playerWondiagonally(int gameBoard[SIZE][SIZE], int playersTurn) {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 71b366e1d531ac1813b9e3dba7ab70d6df46edf9
 //void twoPlayerGame(int gameBoard[SIZE][SIZE]) {
 //
 //
@@ -188,6 +199,7 @@ bool playerWondiagonally(int gameBoard[SIZE][SIZE], int playersTurn) {
 //	}
 //
 //}
+<<<<<<< HEAD
 
 //bool playerAboutToWinHorizontally(int gameBoard[SIZE][SIZE], int* rowNumber) {
 //	// is real player about to win horizontally?
@@ -325,6 +337,49 @@ bool playerAboutToWinvertically(int gameBoard[SIZE][SIZE]) {
 	return 0;
 }
 >>>>>>> 20cc8fe5fddc419d74ffc95b94ba14937b9c3845
+=======
+
+//bool playerAboutToWinHorizontally(int gameBoard[SIZE][SIZE], int* rowNumber) {
+//	// is real player about to win horizontally?
+//	int counter = 0;
+//	for (int column = 0; column < SIZE; column++) {
+//		for (int row = 0; row < SIZE; row++) {
+//			if (gameBoard[row][column] == 2) {
+//				counter++;
+//
+//				if (counter == 2) {
+//					rowNumber = &row;
+//					return 1;
+//				}
+//			}
+//			else {
+//				counter = 0;
+//			}
+//		}
+//	}
+//	return 0;
+//}
+//
+//bool playerAboutToWinvertically(int gameBoard[SIZE][SIZE]) {
+//	// is real player about to win horizontally?
+//	int counter = 0;
+//	for (int row = 0; row < SIZE; row++) {
+//		for (int column = 0; column < SIZE; column++) {
+//			if (gameBoard[row][column] == 2) {
+//				counter++;
+//
+//				if (counter == 2) {
+//					return 1;
+//				}
+//			}
+//			else {
+//				counter = 0;
+//			}
+//		}
+//	}
+//	return 0;
+//}
+>>>>>>> 71b366e1d531ac1813b9e3dba7ab70d6df46edf9
 
 //void computersPlay(int gameBoard[SIZE][SIZE], int *x, int *y) {
 //	int rowNumber;
@@ -418,10 +473,14 @@ void generateRandomCordinates(int gameBoard[SIZE][SIZE], int* x, int* y) {
 //
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void drawTicTacToe(int gameBoard[SIZE][SIZE], int xStartingBoardCoordinates, int yStartingBoardCoordinates, int shape[]) {
 =======
 void drawTicTacToe(int gameBoard[SIZE][SIZE],int xStartingBoardCoordinates, int yStartingBoardCoordinates,int shape[]) {
 >>>>>>> 20cc8fe5fddc419d74ffc95b94ba14937b9c3845
+=======
+void drawTicTacToe(int gameBoard[SIZE][SIZE], int xStartingBoardCoordinates, int yStartingBoardCoordinates, int shape[]) {
+>>>>>>> 71b366e1d531ac1813b9e3dba7ab70d6df46edf9
 
 	//setting color of background
 	g.fillScreen(COLORS::BLACK);
@@ -522,6 +581,21 @@ int loadGame(int gameBoard[SIZE][SIZE], const char* fileName) {
 
 }
 
+<<<<<<< HEAD
+=======
+void msg(int width, int height, const char* txt)
+{
+
+	g.setDrawingColor(COLORS::LIME);
+	g.drawSolidRectangle(width - (34 * strlen(txt)) / 2, height - 80, 34 * strlen(txt), 80);
+	g.setDrawingColor(COLORS::BLACK);
+	g.setFontSizeAndBoldness(80, 200);
+	g.drawText(width - (34 * strlen(txt)) / 2, height - 80, txt);
+	g.endDraw();
+	Sleep(1500);
+}
+
+>>>>>>> 71b366e1d531ac1813b9e3dba7ab70d6df46edf9
 int main()
 {
 	g.setup();
@@ -549,10 +623,14 @@ int main()
 	shape[0] = g.loadImage("x.png");
 	shape[1] = g.loadImage("o.png");
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int playerChoice = 0;
 =======
 	int playerChoice=0;
 >>>>>>> 20cc8fe5fddc419d74ffc95b94ba14937b9c3845
+=======
+	int playerChoice = 0;
+>>>>>>> 71b366e1d531ac1813b9e3dba7ab70d6df46edf9
 	int gameNotOver = 1;
 
 	int playersTurn = 1;
@@ -702,7 +780,7 @@ int main()
 
 
 
-					if (isBoardFull) {
+					if (!isBoardFull(gameBoard)) {
 						if (coordinatesExist(x, y)) {
 
 							if (!isOccupied(gameBoard, x, y)) {
@@ -712,37 +790,20 @@ int main()
 									if (playerChoice == 1) {
 										if (playersTurn == 1) {
 											drawTicTacToe(gameBoard, xBoard, yBoard, shape);
+											msg(screenWidth / 2, screenHeight / 2, "YOU WIN!!!");
 
-											g.setDrawingColor(COLORS::LIME);
-											g.drawSolidRectangle(screenWidth / 2 - 280, screenHeight / 2 - 80, 510, 80);
-											g.setDrawingColor(COLORS::BLACK);
-											g.setFontSizeAndBoldness(80, 200);
-											g.drawText(screenWidth / 2 - 280, screenHeight / 2 - 80, "YOU WON!!!");
-											g.endDraw();
 
 										}
 										else if (playersTurn == 2) {
 											drawTicTacToe(gameBoard, xBoard, yBoard, shape);
-
-											g.setDrawingColor(COLORS::LIME);
-											g.drawSolidRectangle(screenWidth / 2 - 280, screenHeight / 2 - 80, 510, 80);
-											g.setDrawingColor(COLORS::BLACK);
-											g.setFontSizeAndBoldness(80, 200);
-											g.drawText(screenWidth / 2 - 280, screenHeight / 2 - 80, "YOU LOSE!!!");
-											g.endDraw();
+											msg(screenWidth / 2, screenHeight / 2, "YOU LOSE!!!");
 										}
 									}
 									else if (playerChoice == 2) {
 										drawTicTacToe(gameBoard, xBoard, yBoard, shape);
-
-										g.setDrawingColor(COLORS::LIME);
-										g.drawSolidRectangle(screenWidth / 2 - 280, screenHeight / 2 - 80, 510, 80);
-										g.setDrawingColor(COLORS::BLACK);
-										g.setFontSizeAndBoldness(80, 200);
 										char tmp[50];
 										sprintf(tmp, "Player %d WON!!!", playersTurn);
-										g.drawText(screenWidth / 2 - 280, screenHeight / 2 - 80, tmp);
-										g.endDraw();
+										msg(screenWidth / 2, screenHeight / 2, tmp);
 
 >>>>>>> 20cc8fe5fddc419d74ffc95b94ba14937b9c3845
 									}
@@ -754,6 +815,7 @@ int main()
 
 							}
 							else {
+<<<<<<< HEAD
 								g.setDrawingColor(COLORS::LIME);
 								g.drawSolidRectangle(screenWidth / 2 - 550, screenHeight / 2 - 80, 1410, 80);
 								g.setDrawingColor(COLORS::BLACK);
@@ -766,10 +828,17 @@ int main()
 =======
 
 >>>>>>> 20cc8fe5fddc419d74ffc95b94ba14937b9c3845
+=======
+								drawTicTacToe(gameBoard, xBoard, yBoard, shape);
+								msg(screenWidth / 2, screenHeight / 2, "block is occuipied please choose another one");
+
+								computerTurn = 0;
+>>>>>>> 71b366e1d531ac1813b9e3dba7ab70d6df46edf9
 								continue;
 							}
 						}
 						else {
+<<<<<<< HEAD
 							g.setDrawingColor(COLORS::LIME);
 							g.drawSolidRectangle(screenWidth / 2 - 550, screenHeight / 2 - 80, 1300, 80);
 							g.setDrawingColor(COLORS::BLACK);
@@ -781,17 +850,17 @@ int main()
 							computerTurn = 0;
 =======
 >>>>>>> 20cc8fe5fddc419d74ffc95b94ba14937b9c3845
+=======
+							drawTicTacToe(gameBoard, xBoard, yBoard, shape);
+							msg(screenWidth / 2, screenHeight / 2, "coordinates you entered does not exist");
+							computerTurn = 0;
+>>>>>>> 71b366e1d531ac1813b9e3dba7ab70d6df46edf9
 							continue;
 						}
 					}
 					else {
-						g.setDrawingColor(COLORS::LIME);
-						g.drawSolidRectangle(screenWidth / 2 - 550, screenHeight / 2 - 80, 1300, 80);
-						g.setDrawingColor(COLORS::BLACK);
-						g.setFontSizeAndBoldness(80, 200);
-						g.drawText(screenWidth / 2 - 550, screenHeight / 2 - 80, "board is full, its a tie!");
-						g.endDraw();
-						Sleep(1500);
+						drawTicTacToe(gameBoard, xBoard, yBoard, shape);
+						msg(screenWidth / 2, screenHeight / 2, "board is full, its a tie!");
 
 						gameNotOver = 0;
 						break;
@@ -821,6 +890,7 @@ int main()
 					yUserInput--;
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 				else if (GetAsyncKeyState('S')) {
 					saveGame(gameBoard, "xo", playersTurn);
 					drawTicTacToe(gameBoard, xBoard, yBoard, shape);
@@ -831,12 +901,21 @@ int main()
 					g.drawText(screenWidth / 2 - 550, screenHeight / 2 - 80, "Game saved successfully!");
 					g.endDraw();
 					Sleep(1500);
+=======
+				else if (GetAsyncKeyState('S')) {
+					saveGame(gameBoard, "xo", playersTurn);
+					drawTicTacToe(gameBoard, xBoard, yBoard, shape);
+
+					msg(screenWidth / 2, screenHeight / 2, "Game saved successfully!");
+					computerTurn = 0;
+>>>>>>> 71b366e1d531ac1813b9e3dba7ab70d6df46edf9
 				}
 				else if (GetAsyncKeyState('L')) {
 
 					if (fileExists("xo")) {
 						playersTurn = loadGame(gameBoard, "xo");
 						drawTicTacToe(gameBoard, xBoard, yBoard, shape);
+<<<<<<< HEAD
 						g.setDrawingColor(COLORS::LIME);
 						g.drawSolidRectangle(screenWidth / 2 - 550, screenHeight / 2 - 80, 1300, 80);
 						g.setDrawingColor(COLORS::BLACK);
@@ -854,10 +933,24 @@ int main()
 						g.drawText(screenWidth / 2 - 550, screenHeight / 2 - 80, "There are no saved games!");
 						g.endDraw();
 						Sleep(1500);
+=======
+
+						msg(screenWidth / 2, screenHeight / 2, "Game loaded successfully!");
+						computerTurn = 0;
+
+					}
+
+					else {
+						drawTicTacToe(gameBoard, xBoard, yBoard, shape);
+
+						msg(screenWidth / 2, screenHeight / 2, "There are no saved games!");
+						computerTurn = 0;
+>>>>>>> 71b366e1d531ac1813b9e3dba7ab70d6df46edf9
 
 					}
 
 				}
+<<<<<<< HEAD
 				else if (GetAsyncKeyState(27))
 					break;
 			}
@@ -868,6 +961,13 @@ int main()
 					break;
 			}
 >>>>>>> 20cc8fe5fddc419d74ffc95b94ba14937b9c3845
+=======
+				else if (GetAsyncKeyState(27))
+					break;
+			}
+
+
+>>>>>>> 71b366e1d531ac1813b9e3dba7ab70d6df46edf9
 			g.setDrawingColor(COLORS::RED);
 			g.setDrawingThickness(5);
 			g.drawRectangle(xC, yC, 190, 190);
