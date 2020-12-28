@@ -200,8 +200,6 @@ int loadGame(int gameBoard[ROWS][COLS], const char* fileName) {
     playersTurn = char(current - '0');
 
     fclose(file);
-    printf("[Game Loaded]\n");
-    printf("playersTurn::%d\n", playersTurn);
 
     return playersTurn;
     
@@ -248,7 +246,16 @@ int generateRandomColumn(int gameBoard[ROWS][COLS]) {
     return column;
 }
 
-
+void msg(int width,int height,const char* txt)
+{
+    g.setDrawingColor(COLORS::LIME);
+    g.drawSolidRectangle(width-(34*strlen(txt))/2 , height-80, 34*strlen(txt), 80);
+    g.setDrawingColor(COLORS::BLACK);
+    g.setFontSizeAndBoldness(80, 200);
+    g.drawText(width- (34 * strlen(txt)) / 2, height-80, txt);
+    g.endDraw();
+    Sleep(1500);
+}
 
 
 int main() {
@@ -352,14 +359,9 @@ int main() {
                                 if (playerWonHorizontally(gameBoard, playersTurn) || playerWonVertically(gameBoard, playersTurn) || playerWonDiagonally(gameBoard, playersTurn)) {
                                     drawGameBoard(gameBoard, xBoard, yBoard);
 
-                                    g.setDrawingColor(COLORS::LIME);
-                                    g.drawSolidRectangle(width / 2 - 280, height / 2 - 80, 510, 80);
-                                    g.setDrawingColor(COLORS::BLACK);
-                                    g.setFontSizeAndBoldness(80, 200);
                                     char tmp[50];
                                     sprintf(tmp, "Player %d WON!!!", playersTurn);
-                                    g.drawText(width / 2 - 280, height / 2 - 80, tmp);
-                                    g.endDraw();
+                                    msg(width / 2, height / 2, tmp);
 
                                     gameNotOver = 0;
                                     break;
@@ -368,32 +370,24 @@ int main() {
 
                             }
                             else {
-                                g.setDrawingColor(COLORS::LIME);
-                                g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
-                                g.setDrawingColor(COLORS::BLACK);
-                                g.setFontSizeAndBoldness(80, 200);
-                                g.drawText(width / 2 - 550, height / 2 - 80, "Please choose another one, column is full");
-                                g.endDraw();
-                                Sleep(1500);
+                                drawGameBoard(gameBoard, xBoard, yBoard);
+
+                                msg(width / 2, height / 2, "Please choose another one, column is full");
                                 continue;
                             }
 
                         }// merged from terminal based game but has no use here
                         else {
                             printf("column doesn't exist, please choose anther one\n");
-
+                            computerTurn = 0;
                             continue;
                         }
 
                     }
                     else {
-                        g.setDrawingColor(COLORS::LIME);
-                        g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
-                        g.setDrawingColor(COLORS::BLACK);
-                        g.setFontSizeAndBoldness(80, 200);
-                        g.drawText(width / 2 - 550, height / 2 - 80, "It's a tie, no one wins");
-                        g.endDraw();
-                        Sleep(1500);
+                        drawGameBoard(gameBoard, xBoard, yBoard);
+
+                        msg(width / 2, height / 2, "It's a tie, no one wins");
                         break;
                     }
 
@@ -418,34 +412,25 @@ int main() {
                 else if (GetAsyncKeyState('S'))
                 {
                     saveGame(gameBoard, "c4", playersTurn);
-                    g.setDrawingColor(COLORS::LIME);
-                    g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
-                    g.setDrawingColor(COLORS::BLACK);
-                    g.setFontSizeAndBoldness(80, 200);
-                    g.drawText(width / 2 - 550, height / 2 - 80, "Game saved successfully!");
-                    g.endDraw();
-                    Sleep(1500);
+                    drawGameBoard(gameBoard, xBoard, yBoard);
+
+                    msg(width / 2 , height / 2 , "Game saved successfully!");
+                    computerTurn = 0;
                 }
                 else if (GetAsyncKeyState('L'))
                 {
                     if (fileExists("c4")) {
                         playersTurn = loadGame(gameBoard, "c4");
-                        g.setDrawingColor(COLORS::LIME);
-                        g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
-                        g.setDrawingColor(COLORS::BLACK);
-                        g.setFontSizeAndBoldness(80, 200);
-                        g.drawText(width / 2 - 550, height / 2 - 80, "Game loaded successfully!");
-                        g.endDraw();
-                        Sleep(1500);
+                        drawGameBoard(gameBoard, xBoard, yBoard);
+
+                        msg(width / 2 , height / 2, "Game loaded successfully!");
+                        computerTurn = 0;
                     }
                     else {
-                        g.setDrawingColor(COLORS::LIME);
-                        g.drawSolidRectangle(width / 2 - 550, height / 2 - 80, 1300, 80);
-                        g.setDrawingColor(COLORS::BLACK);
-                        g.setFontSizeAndBoldness(80, 200);
-                        g.drawText(width / 2 - 550, height / 2 - 80, "There are no saved games!");
-                        g.endDraw();
-                        Sleep(1500);
+                        drawGameBoard(gameBoard, xBoard, yBoard);
+
+                        msg(width / 2 , height / 2, "There are no saved games!");
+                        computerTurn = 0;
                     }
                 }
             }
