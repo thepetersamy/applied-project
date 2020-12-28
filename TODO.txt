@@ -5,3 +5,10 @@ add c4 graphics          [done]
 add undo and redo functions
 add sounds 
 ask eng nour about &current in load game
+fix message boxes (not all messages is showing)
+turn message boxes into functions
+merge games
+fix loading and saving game to work with ctrl l & s
+change x o pics (preferably)(ask 3sam)
+render instead of sleep
+add exceptions to save game and load game (to make game uncrashable)
